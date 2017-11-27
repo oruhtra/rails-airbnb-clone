@@ -1,7 +1,44 @@
-<h2><%= current_user.first_name %></h2>
-<h2><%= current_user.last_name %></h2>
-<h2><%= current_user.description %></h2>
-<h2><%= current_user.location %></h2>
-
-<%= link_to "edit profile", edit_user_path(@user) %>
+<div class="container">
+  <div class="user_information">
+    <div class="flex">
+      <div class="avatar">
+        <%= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle"%>
+      </div>
+      <div class="information">
+        <ul class="list-unstyled">
+          <li class="name"><%= current_user.first_name %> <%= current_user.last_name %></li>
+          <li class="details"><%= current_user.email %></li>
+          <li class="details"><%= current_user.phone_number %></li>
+          <li class="details"><%= current_user.location %></li>
+        </ul>
+      </div>
+    </div>
+    <div class="description">
+      <p class="title">Description</p>
+      <p><%= current_user.description %></p>
+    </div>
+    <%= link_to "Edit profile", edit_user_path(@user) %>
+  </div>
+  <div class="events">
+    <p class="title text-center">All your events</p>
+    <ul class="list-unstyled">
+      <% @events.each do |e| %>
+        <li class="event-card">
+          <div class="event-content">
+            <div class="event-description">
+              <p><%= e.title %></p>
+              <p><%= e.date %></p>
+              <p><%= e.location %></p>
+            </div>
+            <ul class="list-unstyled">
+              <% e.bookings.each do |b| %>
+                <li><%= booking.user.name %></li>
+              <% end %>
+            </ul>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
 
