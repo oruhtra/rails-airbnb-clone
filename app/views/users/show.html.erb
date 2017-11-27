@@ -1,0 +1,7 @@
+<h2><%= current_user.first_name %></h2>
+<h2><%= current_user.last_name %></h2>
+<h2><%= current_user.description %></h2>
+<h2><%= current_user.location %></h2>
+
+<%= link_to "edit profile", edit_user_path(@user) %>
+
