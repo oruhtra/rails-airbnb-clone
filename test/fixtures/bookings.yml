@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event: one
+  user: one
+  description: MyText
+  price: 1
+
+two:
+  event: two
+  user: two
+  description: MyText
+  price: 1
