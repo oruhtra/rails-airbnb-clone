@@ -1,0 +1,26 @@
+.events {
+  border-top: 1px solid rgba(1, 1, 1, 0.1);
+  padding: 20px 0;
+}
+
+.events .title {
+  font-size: 25px;
+  color: rgba(1, 1, 1, 0.5);
+  font-weight: bolder;
+}
+
+.events .event-card {
+  margin-bottom: 10px;
+}
+
+.events .event-content {
+  padding: 5px;
+  border-radius: 10px;
+  display: flex;
+  justify-items: space-around;
+}
+
+.events .event-content:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  opacity: 0.8;
+}

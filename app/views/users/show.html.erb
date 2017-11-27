@@ -21,6 +21,24 @@
   </div>
   <div class="events">
     <p class="title text-center">All your events</p>
+    <ul class="list-unstyled">
+      <% @events.each do |e| %>
+        <li class="event-card">
+          <div class="event-content">
+            <div class="event-description">
+              <p><%= e.title %></p>
+              <p><%= e.date %></p>
+              <p><%= e.location %></p>
+            </div>
+            <ul class="list-unstyled">
+              <% e.bookings.each do |b| %>
+                <li><%= booking.user.name %></li>
+              <% end %>
+            </ul>
+          </div>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </div>
 
