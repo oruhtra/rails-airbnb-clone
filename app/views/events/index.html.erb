@@ -1,0 +1,10 @@
+<h1>index event </h1>
+
+<!-- simple form pour affiche lieu, date, titre  -->
+
+<%= simple_form_for [@event] do |f| %>
+  <%= f.input :date %>
+  <%= f.input :location %>
+  <%= f.input :title %>
+  <%= f.submit class:"btn btn-primary"%>
+<% end %>
