@@ -1,0 +1,49 @@
+.user_information {
+  padding: 20px 0px;
+}
+
+.user_information .flex {
+  display: flex;
+  justify-content: space around;
+  margin-bottom: 20px;
+}
+
+.user_information .avatar {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+}
+
+.information {
+  margin-left: 20px;
+}
+
+.user_information .information .name {
+  font-size: 40px;
+  text-transform: capitalize;
+  color: rgba(1, 1, 1, 1);
+  font-weight: bolder;
+}
+
+.user_information .information .details {
+  font-size: 25px;
+  color: rgba(1, 1, 1, 0.5);
+  font-weight: normal;
+}
+
+.description .title {
+  font-size: 25px;
+  color: rgba(1, 1, 1, 0.5);
+  font-weight: normal;
+}
+
+.events {
+  border-top: 1px solid rgba(1, 1, 1, 0.1);
+  padding: 20px 0;
+}
+
+.events .title {
+  font-size: 25px;
+  color: rgba(1, 1, 1, 0.5);
+  font-weight: bolder;
+}
