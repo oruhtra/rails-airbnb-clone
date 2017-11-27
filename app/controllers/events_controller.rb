@@ -1,5 +1,11 @@
 class EventsController < ApplicationController
 
+  def show
+    @event = Event.find(params[:id])
+    @pleureurs = User.where(status: true)
+    @bookings = @event.bookings
+  end
+
   def new
     @pleureurs = User.where(status: true)
     @event = Event.new
@@ -8,9 +14,9 @@ class EventsController < ApplicationController
   def create
     @pleureurs = User.where(status: true)
     @event = Event.new(event_params)
-    @event.user = current_user.id
+    @event.user = current_user
     if @event.save
-      redirect_to new_event_path
+      redirect_to event_path(@event)
     else
       render :new
     end
