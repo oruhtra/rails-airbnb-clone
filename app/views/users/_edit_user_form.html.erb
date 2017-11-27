@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-4 col-xs-offset-4">
+      <%= simple_form_for(@user) do |f| %>
+      <%= f.input :first_name, autofocus: true %>
+      <%= f.input :last_name %>
+      <%= f.input :description %>
+      <%= f.input :phone_number %>
+      <%= f.submit "Update profile" %>
+      <% end %>
+    </div>
+  </div>
+</div>
