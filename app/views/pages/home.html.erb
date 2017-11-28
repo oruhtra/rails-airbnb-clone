@@ -15,3 +15,26 @@
     </div>
   </div>
 </div>
+
+
+<!-- all pleureurs -->
+<div class="container">
+  <div class="row">
+
+  <% @pleureurs.each do |pleureur| %>
+    <div class="col-xs-6 col-sm-4 col-md-3">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('cl_image_tag(pleureur.photo');">
+        <div class="card-category">Popular</div>
+        <div class="card-description">
+          <h2><%= pleureur.first_name.capitalize %></h2>
+          <p><%= pleureur.tarif %> € </p>
+        </div>
+      </div>
+      <div class="send_part">
+        <p>Send a request to <%= pleureur.first_name %></p>
+        <%= link_to "", user_path(pleureur.id), class: "card-link"%>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>

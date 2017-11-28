@@ -1,39 +1,39 @@
-<div class="container">
+<div class="container ">
   <div class="row">
-    <div class="col-xs-6-col-xs-offset-3">
-      <div class="flex">
-        <p><%= @event.title %></p>
-        <p><%= @event.date %></p>
-        <p><%= @event.location %></p>
-        <ul>
-          <% @bookings.each do |b| %>
-          <li>Request sent to <%= b.user.first_name %> <%= b.user.last_name %></li>
-          <li>Status: <%= b.status %></li>
-          <li>price: <%= b.price %>€</li>
-          <% end %>
-        </ul>
-      </div>
+    <div class="col-xs-6-col-xs-offset-3 ">
+      <h1 class="yourevent"><%= @event.title %></h1>
+        <p><em>On <%= @event.date.strftime('%A, %b %d') %>, at <%= @event.location %></em> </p>
     </div>
   </div>
 </div>
 
+<!-- Part 2 display sweeper available, build forms to create a booking -->
 <div class="container">
   <div class="row">
-
-  <% @pleureurs.each do |pleureur| %>
-    <div class="col-xs-6 col-sm-4 col-md-3">
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://i0.wp.com/digital-photography-school.com/wp-content/uploads/flickr/8260117875_5ab9373bce_o.jpg?resize=600%2C401&ssl=1');">
-        <div class="card-category">Popular</div>
-        <div class="card-description">
-          <h2><%= pleureur.first_name.capitalize %></h2>
-          <p><%= pleureur.tarif %> € </p>
+    <% @users.each do |user|%>
+      <div class="container booking-card">
+      <%= simple_form_for [@event, @booking] do |f| %>
+        <div class="col-xs-6 col-sm-4 col-md-3">
+          <%= hidden_field_tag(:user_id, user.id) %>
+          <%= button_tag do %>
+            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('cl_image_tag(user.photo');">
+              <div class="card-description">
+                <h2><%= user.first_name.capitalize %></h2>
+                <p><%= user.tarif %> € </p>
+              </div>
+            </div>
+            <div class="send_part">
+              <p>Send a request to <%= user.first_name %></p>
+            </div>
+          <div class= "btn btn-success">
+            <%= link_to "Profile", user_path %>
+          </div>
         </div>
-      </div>
-      <div class="send_part">
-        <p>Send a request to <%= pleureur.first_name %></p>
-        <%= link_to "", bookings_create_path(@event.id, pleureur.id), method: :post, data: {confirm: "Are your sure?"}, class: 'card-link'%>
-      </div>
+        <% end %>
+      <% end %>
+    <% end %>
     </div>
-  <% end %>
   </div>
 </div>
+
+
