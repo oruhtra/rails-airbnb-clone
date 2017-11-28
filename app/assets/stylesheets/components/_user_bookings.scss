@@ -3,6 +3,12 @@
   padding: 20px 10px;
 }
 
+.bookings .title {
+  font-size: 25px;
+  color: rgba(1, 1, 1, 0.5);
+  font-weight: bolder;
+}
+
 .bookings .event-content:hover {
   background-color: rgba(0, 0, 0, 0.05);
   opacity: 0.8;

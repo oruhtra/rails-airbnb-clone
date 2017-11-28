@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :update, :edit] do
   end
 
-  resources :events, only: [:new, :create, :show] do
+  resources :events, only: [:new, :create, :show, :destroy] do
     resources :bookings, only: :create
   end
-  resources :bookings, only: :update
+  resources :bookings, only: [:update, :destroy]
 end
