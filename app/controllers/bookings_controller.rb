@@ -8,10 +8,16 @@ class BookingsController < ApplicationController
     redirect_to event_path(@event)
   end
 
+  def update
+    @booking = Booking.find(params[:id])
+    @booking.update(booking_params)
+    redirect_to user_path(@booking.user)
+  end
+
   private
 
   def booking_params
-    params.permit(:event_id, :user_id)
+    params.permit(:event_id, :user_id, :status)
   end
 
 end

@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :events, only: [:new, :create, :show]
 
   post 'events/:event_id/:user_id/bookings', to: 'bookings#create', as: :bookings_create
+  resources :bookings, only: [:update]
 end
