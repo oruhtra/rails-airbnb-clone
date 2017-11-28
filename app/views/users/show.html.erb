@@ -1,9 +1,13 @@
 <div class="container user-profile-content">
   <div class="row">
     <div class="col-md-4">
-      <%= link_to edit_user_path(@user) do %>
         <div class="user_information">
           <div class="flex">
+            <% if policy(@user).edit? %>
+          <%= link_to edit_user_path(@user) do %>
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+          <% end %>
+          <% end %>
             <div class="avatar">
               <%= cl_image_tag(@user.photo, class: "avatar dropdown-toggle")%>
             </div>
@@ -21,8 +25,10 @@
             <p><%= @user.description %></p>
           </div>
         </div>
-      <% end %>
     </div>
+
+
+
     <div class="col-md-8">
 
       <div class="events">

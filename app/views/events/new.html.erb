@@ -10,7 +10,9 @@
         <%= f.input :location %>
         <%= f.input :title %>
         <div class="text-center">
+          <% if policy(Event).create? %>
         <%= f.submit class:"btn btn-danger margin_bottom"%>
+        <% end %>
         </div>
       <% end %>
       </div>

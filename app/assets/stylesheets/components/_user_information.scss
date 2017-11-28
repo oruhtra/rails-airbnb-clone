@@ -1,12 +1,16 @@
 .user_information {
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
   padding: 20px 20px;
+  position: relative;
 }
 
-.user_information:hover {
-  opacity: 0.6;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+.fa-pencil {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: black;
 }
+
 
 .user_information .flex {
   display: flex;
