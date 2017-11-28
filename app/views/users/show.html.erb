@@ -1,59 +1,127 @@
-<div class="container">
-  <div class="user_information">
-    <div class="flex">
-      <div class="avatar">
-        <%= cl_image_tag(@user.photo, class: "avatar dropdown-toggle")%>
-      </div>
-      <div class="information">
+<div class="container user-profile-content">
+  <div class="row">
+    <div class="col-md-4">
+      <%= link_to edit_user_path(@user) do %>
+        <div class="user_information">
+          <div class="flex">
+            <div class="avatar">
+              <%= cl_image_tag(@user.photo, class: "avatar dropdown-toggle")%>
+            </div>
+          </div>
+          <div class="information">
+            <ul class="list-unstyled">
+              <li class="name"><%= @user.first_name %> <%= @user.last_name %></li>
+              <li class="details"><%= @user.email %></li>
+              <li class="details"><%= @user.phone_number %></li>
+              <li class="details"><%= @user.location %></li>
+            </ul>
+          </div>
+          <div class="description">
+            <p class="title">Description</p>
+            <p><%= @user.description %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-8">
+
+      <div class="events">
+        <p class="title text-center">All your events</p>
         <ul class="list-unstyled">
-          <li class="name"><%= @user.first_name %> <%= @user.last_name %></li>
-          <li class="details"><%= @user.email %></li>
-          <li class="details"><%= @user.phone_number %></li>
-          <li class="details"><%= @user.location %></li>
-          <li class="details"><%= @user.status %></li>
+          <% @events.each do |e| %>
+            <%= link_to event_path(e) do %>
+              <li class="event-card">
+                <div class="event-content">
+                  <div class="event-description">
+                    <p><%= e.title %></p>
+                    <p><%= e.date %></p>
+                    <p><%= e.location %></p>
+                  </div>
+                  <ul class="list-unstyled">
+                    <% e.bookings.each do |b| %>
+                      <li><%= b.user.first_name %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              </li>
+            <% end %>
+          <% end %>
         </ul>
       </div>
-    </div>
-    <div class="description">
-      <p class="title">Description</p>
-      <p><%= @user.description %></p>
-    </div>
-    <%= link_to "Edit profile", edit_user_path(@user) %>
-  </div>
-  <div class="events">
-    <p class="title text-center">All your events</p>
-    <ul class="list-unstyled">
-      <% @events.each do |e| %>
-        <%= link_to event_path(e) do %>
-          <li class="event-card">
-            <div class="event-content">
-              <div class="event-description">
-                <p><%= e.title %></p>
-                <p><%= e.date %></p>
-                <p><%= e.location %></p>
-              </div>
-              <ul class="list-unstyled">
-                <% e.bookings.each do |b| %>
-                  <li><%= b.user.first_name %></li>
-                <% end %>
-              </ul>
-            </div>
-          </li>
-        <% end %>
-      <% end %>
 
-  <div class="bookings">
-    <p class="title text-center">All your bookings</p>
-    <ul class="list-unstyled">
-      <% @bookings.each do |b| %>
-          <li class="event-card">
-            <div class="event-content">
-              <div class="event-description">
-                <p><%= b.event.title %></p>
-                <p><%= b.event.date %></p>
-                <p><%= b.event.location %></p>
-              </div>
+      <div class="bookings">
+        <p class="title text-center">All your bookings</p>
+        <% @bookings.each do |b| %>
+          <div class="message">
+            <div class="avatar">
+              <%= cl_image_tag(b.event.user.photo, class: "avatar dropdown-toggle")%>
             </div>
-          </li>
-      <% end %>
+            <div class="message-name">
+              <h3><%= b.event.user.first_name %> <%= b.event.user.last_name %></h3>
+              <p><%= b.event.date %></p>
+            </div>
+            <div class="message-body">
+              <p><strong><%= b.event.title %></strong></p>
+              <p>
+                <%= b.description %>
+              </p>
+            </div>
+
+            <% if b.status == "pending" %>
+
+              <div class="message-status">
+                <p class="status pending"><%= b.status %></p>
+                <p class="price"><%= b.price %>€</p>
+              </div>
+              <div class="message-actions">
+
+                <%= simple_form_for(b) do |f| %>
+                <%= hidden_field_tag(:status, 'accepted') %>
+                  <%= button_tag(style: "border: none; background-color: transparent") do %>
+                    <i class="fa fa-check fa-bg status accepted" aria-hidden="true"></i>
+                  <% end %>
+                <% end %>
+
+                <%= simple_form_for(b) do |f| %>
+                <%= hidden_field_tag(:status, 'declined') %>
+                  <%= button_tag(style: "border: none; background-color: transparent") do %>
+                    <i class="fa fa-times fa-bg status declined" aria-hidden="true"></i>
+                  <% end %>
+                <% end %>
+              </div>
+
+            <% elsif b.status == "accepted" %>
+
+                <div class="message-status">
+                  <p class="status accepted"><%= b.status %></p>
+                  <p class="price"><%= b.price %>€</p>
+                </div>
+
+                <div class="message-actions">
+
+                  <%= simple_form_for(b) do |f| %>
+                  <%= hidden_field_tag(:status, 'declined') %>
+                    <%= button_tag(style: "border: none; background-color: transparent") do %>
+                      <i class="fa fa-times fa-bg status declined" aria-hidden="true"></i>
+                    <% end %>
+                  <% end %>
+
+                </div>
+
+              <% else %>
+
+                <div class="message-status">
+                  <p class="status declined"><%= b.status %></p>
+                  <p class="price"><%= b.price %>€</p>
+                </div>
+
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+
     </div>
+
+  </div>
+
+</div>
