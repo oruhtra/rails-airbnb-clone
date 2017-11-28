@@ -17,7 +17,7 @@
       <div class="col-xs-6 col-sm-4">
 
         <%= link_to user_path(user) do %>
-          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('cl_image_tag(user.photo');">
+          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= user.photo? ? (cl_image_path user.photo) : ('https://picsum.photos/g/200/300') %>');">
             <div class="card-description">
               <h2><%= user.first_name.capitalize %></h2>
               <p><%= user.tarif %> € </p>
