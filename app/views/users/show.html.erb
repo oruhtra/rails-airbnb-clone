@@ -6,16 +6,16 @@
       </div>
       <div class="information">
         <ul class="list-unstyled">
-          <li class="name"><%= current_user.first_name %> <%= current_user.last_name %></li>
-          <li class="details"><%= current_user.email %></li>
-          <li class="details"><%= current_user.phone_number %></li>
-          <li class="details"><%= current_user.location %></li>
+          <li class="name"><%= @user.first_name %> <%= @user.last_name %></li>
+          <li class="details"><%= @user.email %></li>
+          <li class="details"><%= @user.phone_number %></li>
+          <li class="details"><%= @user.location %></li>
         </ul>
       </div>
     </div>
     <div class="description">
       <p class="title">Description</p>
-      <p><%= current_user.description %></p>
+      <p><%= @user.description %></p>
     </div>
     <%= link_to "Edit profile", edit_user_path(@user) %>
   </div>
@@ -23,20 +23,22 @@
     <p class="title text-center">All your events</p>
     <ul class="list-unstyled">
       <% @events.each do |e| %>
-        <li class="event-card">
-          <div class="event-content">
-            <div class="event-description">
-              <p><%= e.title %></p>
-              <p><%= e.date %></p>
-              <p><%= e.location %></p>
+        <%= link_to event_path(e) do %>
+          <li class="event-card">
+            <div class="event-content">
+              <div class="event-description">
+                <p><%= e.title %></p>
+                <p><%= e.date %></p>
+                <p><%= e.location %></p>
+              </div>
+              <ul class="list-unstyled">
+                <% e.bookings.each do |b| %>
+                  <li><%= booking.user.name %></li>
+                <% end %>
+              </ul>
             </div>
-            <ul class="list-unstyled">
-              <% e.bookings.each do |b| %>
-                <li><%= booking.user.name %></li>
-              <% end %>
-            </ul>
-          </div>
-        </li>
+          </li>
+        <% end %>
       <% end %>
     </ul>
   </div>
