@@ -1,0 +1,70 @@
+<div class="bookings">
+        <p class="title text-center">All your bookings</p>
+        <% @bookings.each do |b| %>
+          <div class="message">
+            <div class="avatar">
+              <%= cl_image_tag(b.event.user.photo, class: "avatar")%>
+            </div>
+            <div class="message-name">
+              <h3><%= b.event.user.first_name %> <%= b.event.user.last_name %></h3>
+              <p><%= b.event.date %></p>
+            </div>
+            <div class="message-body">
+              <p><strong><%= b.event.title %></strong></p>
+              <p>
+                <%= b.description %>
+              </p>
+            </div>
+
+            <% if b.status == "pending" %>
+
+              <div class="message-status">
+                <p class="status pending"><%= b.status %></p>
+                <p class="price"><%= b.price %>€</p>
+              </div>
+              <div class="message-actions">
+
+                <%= simple_form_for(b) do |f| %>
+                <%= hidden_field_tag(:status, 'accepted') %>
+                  <%= button_tag(style: "border: none; background-color: transparent") do %>
+                    <i class="fa fa-check fa-bg status accepted" aria-hidden="true"></i>
+                  <% end %>
+                <% end %>
+
+                <%= simple_form_for(b) do |f| %>
+                <%= hidden_field_tag(:status, 'declined') %>
+                  <%= button_tag(style: "border: none; background-color: transparent") do %>
+                    <i class="fa fa-times fa-bg status declined" aria-hidden="true"></i>
+                  <% end %>
+                <% end %>
+              </div>
+
+            <% elsif b.status == "accepted" %>
+
+                <div class="message-status">
+                  <p class="status accepted"><%= b.status %></p>
+                  <p class="price"><%= b.price %>€</p>
+                </div>
+
+                <div class="message-actions">
+
+                  <%= simple_form_for(b) do |f| %>
+                  <%= hidden_field_tag(:status, 'declined') %>
+                    <%= button_tag(style: "border: none; background-color: transparent") do %>
+                      <i class="fa fa-times fa-bg status declined" aria-hidden="true"></i>
+                    <% end %>
+                  <% end %>
+
+                </div>
+
+              <% else %>
+
+                <div class="message-status">
+                  <p class="status declined"><%= b.status %></p>
+                  <p class="price"><%= b.price %>€</p>
+                </div>
+
+            <% end %>
+          </div>
+        <% end %>
+      </div>
