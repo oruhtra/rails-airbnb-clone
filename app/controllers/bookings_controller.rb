@@ -4,6 +4,7 @@ class BookingsController < ApplicationController
     @event = Event.find(params[:event_id])
     @user = User.find(params[:user_id])
     @booking = Booking.create(booking_params)
+    authorize @event
     @booking.update(status: "pending", price: @user.tarif)
     redirect_to event_path(@event)
   end

@@ -2,7 +2,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @users = User.where(status: true)
+    @users = User.where("status = ? AND id != ?", true, @event.user_id)
     @booking = Booking.new
     @bookings = @event.bookings
     authorize @event
@@ -28,6 +28,7 @@ class EventsController < ApplicationController
   def destroy
     @event = Event.find(params[:id])
     @user = @event.user
+    authorize @event
     @event.destroy
     redirect_to user_path(@user)
   end
