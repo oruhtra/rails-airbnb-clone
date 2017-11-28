@@ -1,7 +1,6 @@
 class BookingsController < ApplicationController
 
   def create
-    raise
     @event = Event.find(params[:event_id])
     @user = User.find(params[:user_id])
     @booking = Booking.create(booking_params)
