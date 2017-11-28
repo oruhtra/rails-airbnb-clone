@@ -1,0 +1,54 @@
+<div class="events">
+        <p class="title text-center">All your events</p>
+        <ul class="list-unstyled">
+          <% @events.each do |e| %>
+            <%= link_to event_path(e) do %>
+              <li class="event-card">
+                <div class="event-content">
+                  <div class="event-description">
+                    <h3><%= e.title %></h3>
+                    <p><%= e.date %></p>
+                    <p><%= e.location %></p>
+                    <%= link_to event_path(e), method: :delete do %>
+                        <i class="fa fa-times fa-2x status declined hover" aria-hidden="true"></i>
+                    <% end %>
+                  </div>
+                  <ul class="list-unstyled">
+                    <% e.bookings.each do |b| %>
+
+                      <div class="message">
+                        <div class="avatar">
+                          <%= cl_image_tag(b.user.photo, class: "avatar")%>
+                        </div>
+                        <div class="message-name">
+                          <h3><%= b.user.first_name %> <%= b.user.last_name %></h3>
+                          <p><%= e.date %></p>
+                        </div>
+                        <div class="message-body">
+                          <p>
+                            <%= b.description %>
+                          </p>
+                        </div>
+                        <div class="message-status">
+                          <p class="status pending"><%= b.status %></p>
+                          <p class="price"><%= b.price %>€</p>
+                        </div>
+
+                      <div class="message-actions">
+
+                      <%= link_to booking_path(b), method: :delete do %>
+                        <i class="fa fa-times fa-2x status declined hover" aria-hidden="true"></i>
+                      <% end %>
+
+                      </div>
+                      </div>
+
+                    <% end %>
+                  </ul>
+                </div>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+
