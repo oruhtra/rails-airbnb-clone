@@ -1,21 +1,24 @@
-<%= link_to edit_user_path(@user) do %>
-  <div class="user_information">
-    <div class="flex">
-      <div class="avatar">
-        <%= cl_image_tag(@user.photo, class: "avatar dropdown-toggle")%>
-      </div>
-    </div>
-    <div class="information">
-      <ul class="list-unstyled">
-        <li class="name"><%= @user.first_name %> <%= @user.last_name %></li>
-        <li class="details"><%= @user.email %></li>
-        <li class="details"><%= @user.phone_number %></li>
-        <li class="details"><%= @user.location %></li>
-      </ul>
-    </div>
-    <div class="description">
-      <p class="title">Description</p>
-      <p><%= @user.description %></p>
+<div class="user_information">
+  <div class="flex">
+    <% if policy(@user).edit? %>
+  <%= link_to edit_user_path(@user) do %>
+  <i class="fa fa-pencil" aria-hidden="true"></i>
+  <% end %>
+  <% end %>
+    <div class="avatar">
+      <%= cl_image_tag(@user.photo, class: "avatar dropdown-toggle")%>
     </div>
   </div>
-<% end %>
+  <div class="information">
+    <ul class="list-unstyled">
+      <li class="name"><%= @user.first_name %> <%= @user.last_name %></li>
+      <li class="details"><%= @user.email %></li>
+      <li class="details"><%= @user.phone_number %></li>
+      <li class="details"><%= @user.location %></li>
+    </ul>
+  </div>
+  <div class="description">
+    <p class="title">Description</p>
+    <p><%= @user.description %></p>
+  </div>
+</div>

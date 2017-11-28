@@ -1,16 +1,25 @@
 <div class="container user-profile-content">
   <div class="row">
-    <div class="col-md-4">
+
+    <% if policy(@user).edit? %>
+      <div class="col-md-4">
       <%= render 'profile_user_information' %>
 
-    </div>
-    <div class="col-md-8">
+      </div>
 
-    <%= render 'profile_event_list' %>
+      <div class="col-md-8">
 
-    <%= render 'profile_booking_list' %>
+      <%= render 'profile_event_list' %>
 
-    </div>
+      <%= render 'profile_booking_list' %>
+
+      </div>
+      <% else %>
+      <div class="col-md-6 col-md-offset-3">
+      <%= render 'profile_user_information' %>
+
+      </div>
+    <% end %>
 
   </div>
 
