@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
 
   resources :events, only: [:new, :create, :show] do
-    resources :bookings, only: [:create]
+    resources :bookings, only: :create
   end
-
+  resources :bookings, only: :update
 end

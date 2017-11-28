@@ -1,21 +1,27 @@
 .user_information {
-  padding: 20px 0px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  padding: 20px 20px;
+}
+
+.user_information:hover {
+  opacity: 0.6;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
 }
 
 .user_information .flex {
   display: flex;
-  justify-content: space around;
-  margin-bottom: 20px;
+  justify-content: space-around;
 }
 
 .user_information .avatar {
   height: 200px;
   width: 200px;
   border-radius: 50%;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .information {
-  margin-left: 20px;
+
 }
 
 .user_information .information .name {
@@ -26,14 +32,19 @@
 }
 
 .user_information .information .details {
+  font-size: 20px;
+  color: rgba(1, 1, 1, 0.5);
+  font-weight: normal;
+}
+
+.user_information .description .title {
   font-size: 25px;
   color: rgba(1, 1, 1, 0.5);
   font-weight: normal;
 }
 
-.description .title {
-  font-size: 25px;
-  color: rgba(1, 1, 1, 0.5);
-  font-weight: normal;
+.user_information .description p {
+    color: black;
+    font-style: italic;
 }
 
