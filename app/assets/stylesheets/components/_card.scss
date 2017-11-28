@@ -7,6 +7,10 @@
   position: relative;
   margin-top: 30px;
 }
+.card:hover {
+  box-shadow: 2px 2px 2px rgba(0,0,0,1);
+}
+
 .card-user {
   position: absolute;
   right: 10px;
