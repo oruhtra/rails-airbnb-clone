@@ -7,7 +7,6 @@ class EventsController < ApplicationController
   end
 
   def new
-    @pleureurs = User.where(status: true)
     @event = Event.new
   end
 

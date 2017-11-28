@@ -1,10 +1,17 @@
-<div class="container">
+<div class="container ">
   <div class="row">
-    <div class="col-xs-6-col-xs-offset-3">
-      <div class="flex">
-        <p><%= @event.title %></p>
-        <p><%= @event.date %></p>
-        <p><%= @event.location %></p>
+    <div class="col-xs-6-col-xs-offset-3 ">
+      <h1 class="yourevent"><%= @event.title %></h1>
+        <p><em>On <%= @event.date.strftime('%A, %b %d') %>, at <%= @event.location %></em> </p>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
         <ul>
           <% @bookings.each do |b| %>
           <li>Request sent to <%= b.user.first_name %> <%= b.user.last_name %></li>
@@ -12,28 +19,5 @@
           <li>price: <%= b.price %>€</li>
           <% end %>
         </ul>
-      </div>
-    </div>
-  </div>
-</div>
 
-<div class="container">
-  <div class="row">
 
-  <% @pleureurs.each do |pleureur| %>
-    <div class="col-xs-6 col-sm-4 col-md-3">
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://i0.wp.com/digital-photography-school.com/wp-content/uploads/flickr/8260117875_5ab9373bce_o.jpg?resize=600%2C401&ssl=1');">
-        <div class="card-category">Popular</div>
-        <div class="card-description">
-          <h2><%= pleureur.first_name.capitalize %></h2>
-          <p><%= pleureur.tarif %> € </p>
-        </div>
-      </div>
-      <div class="send_part">
-        <p>Send a request to <%= pleureur.first_name %></p>
-        <%= link_to "", bookings_create_path(@event.id, pleureur.id), method: :post, data: {confirm: "Are your sure?"}, class: 'card-link'%>
-      </div>
-    </div>
-  <% end %>
-  </div>
-</div>

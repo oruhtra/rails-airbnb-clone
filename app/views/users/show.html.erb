@@ -2,7 +2,7 @@
   <div class="user_information">
     <div class="flex">
       <div class="avatar">
-        <%= cl_image_tag(current_user.photo, class: "avatar dropdown-toggle")%>
+        <%= cl_image_tag(@user.photo, class: "avatar dropdown-toggle")%>
       </div>
       <div class="information">
         <ul class="list-unstyled">
@@ -33,7 +33,7 @@
               </div>
               <ul class="list-unstyled">
                 <% e.bookings.each do |b| %>
-                  <li><%= booking.user.name %></li>
+                  <li><%= b.user.first_name %></li>
                 <% end %>
               </ul>
             </div>
