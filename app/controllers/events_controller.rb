@@ -2,8 +2,8 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @pleureurs = User.where(status: true)
-    @bookings = @event.bookings
+    @users = User.where(status: true)
+    @booking = Booking.new
   end
 
   def new
