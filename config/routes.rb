@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :update, :edit] do
   end
 
-  resources :events, only: [:new, :create, :show]
-
-  post 'events/:event_id/:user_id/bookings', to: 'bookings#create', as: :bookings_create
+  resources :events, only: [:new, :create, :show] do
+    resources :bookings, only: :create
+  end
   resources :bookings, only: [:update]
 end

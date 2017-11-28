@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user.status = params[:user][:status] == "1"
     @user.update(user_params)
     redirect_to user_path(@user)
   end
@@ -21,6 +22,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :description, :status, :phone_number, :photo)
+    params.require(:user).permit(:first_name, :last_name, :description, :phone_number, :photo)
   end
 end

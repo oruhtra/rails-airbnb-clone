@@ -4,6 +4,8 @@
       <%= simple_form_for(@user) do |f| %>
       <%= f.input :first_name, autofocus: true %>
       <%= f.input :last_name %>
+      <%= f.label :status, "Etes vous un pleureur ?" %>
+      <%= f.check_box :status %>
       <%= f.input :description %>
       <%= f.input :phone_number %>
       <%= f.submit "Update profile" %>
