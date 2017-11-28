@@ -1,5 +1,5 @@
 <!-- simple form pour affiche lieu, date, titre  -->
-<div class= "container" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('http://cdn-europe1.new2.ladmedia.fr/var/europe1/storage/images/europe1/societe/bebe-rom-de-champlan-polemique-apres-un-enterrement-refuse-706292/14100902-1-fre-FR/Bebe-rom-de-Champlan-polemique-apres-un-enterrement-refuse.jpg');>
+<div class= "container" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('http://cdn-europe1.new2.ladmedia.fr/var/europe1/storage/images/europe1/societe/bebe-rom-de-champlan-polemique-apres-un-enterrement-refuse-706292/14100902-1-fre-FR/Bebe-rom-de-Champlan-polemique-apres-un-enterrement-refuse.jpg')";>
   <div class= "row">
     <div class= "col-xs-4 col-xs-offset-4 form">
     <h2 class= "text-center">Create an event</h2>
@@ -20,7 +20,7 @@
 
   <% @pleureurs.each do |pleureur| %>
     <div class="col-xs-6 col-sm-4 col-md-3">
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://i0.wp.com/digital-photography-school.com/wp-content/uploads/flickr/8260117875_5ab9373bce_o.jpg?resize=600%2C401&ssl=1');">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('cl_image_tag(pleureur.photo');">
         <div class="card-category">Popular</div>
         <div class="card-description">
           <h2><%= pleureur.first_name.capitalize %></h2>
