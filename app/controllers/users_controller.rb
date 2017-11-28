@@ -4,15 +4,18 @@ class UsersController < ApplicationController
   def show
     @events = @user.events
     @bookings = @user.bookings
+    authorize @user
   end
 
   def edit
+    authorize @user
   end
 
   def update
     @user.status = params[:user][:status] == "1"
     @user.update(user_params)
     redirect_to user_path(@user)
+    authorize @user
   end
 
   private

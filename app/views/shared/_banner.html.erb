@@ -4,8 +4,10 @@
       <p>
       <span id="banner-typed-text"></span>
       </p>
-      <%= link_to new_event_path, class:"btn btn-primary btn-lg" do %>
+      <% if policy(Event).new? %>
+        <%= link_to new_event_path, class:"btn btn-primary btn-lg" do %>
         Create an event !
+      <% end %>
       <% end %>
   </div>
 </div>
