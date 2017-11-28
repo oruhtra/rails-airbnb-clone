@@ -2,7 +2,7 @@
   <div class="user_information">
     <div class="flex">
       <div class="avatar">
-        <%= cl_image_tag(current_user.photo, class: "avatar dropdown-toggle")%>
+        <%= cl_image_tag(@user.photo, class: "avatar dropdown-toggle")%>
       </div>
       <div class="information">
         <ul class="list-unstyled">
@@ -10,6 +10,7 @@
           <li class="details"><%= @user.email %></li>
           <li class="details"><%= @user.phone_number %></li>
           <li class="details"><%= @user.location %></li>
+          <li class="details"><%= @user.status %></li>
         </ul>
       </div>
     </div>
@@ -33,13 +34,26 @@
               </div>
               <ul class="list-unstyled">
                 <% e.bookings.each do |b| %>
-                  <li><%= booking.user.name %></li>
+                  <li><%= b.user.first_name %></li>
                 <% end %>
               </ul>
             </div>
           </li>
         <% end %>
       <% end %>
-    </ul>
-  </div>
-</div>
+
+  <div class="bookings">
+    <p class="title text-center">All your bookings</p>
+    <ul class="list-unstyled">
+      <% @bookings.each do |b| %>
+          <li class="event-card">
+            <div class="event-content">
+              <div class="event-description">
+                <p><%= b.event.title %></p>
+                <p><%= b.event.date %></p>
+                <p><%= b.event.location %></p>
+              </div>
+            </div>
+          </li>
+      <% end %>
+    </div>
