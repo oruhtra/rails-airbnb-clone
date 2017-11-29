@@ -7,35 +7,69 @@
   </div>
 </div>
 
-<!-- Part 2 display sweeper available, build forms to create a booking -->
 
-<div class="container">
-  <div class="row">
-
-    <% @users.each do |user|%>
-
-      <div class="col-xs-6 col-sm-4">
-
-        <%= link_to user_path(user) do %>
-          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= user.photo? ? (cl_image_path user.photo) : ('https://picsum.photos/g/200/300') %>');">
-            <div class="card-description">
-              <h2><%= user.first_name.capitalize %></h2>
-              <p><%= user.tarif %> € </p>
+<!-- Part 1 display sweeper already booked or request send  -->
+<%if not @bookings.first.nil?  %>
+  <h3>Your resquested Weeper </h3>
+  <div class="container">
+    <div class="row">
+      <% @bookings.each do |booking| %>
+        <div class="col-xs-6 col-sm-4">
+          <%= link_to user_path(booking.user) do %>
+            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= booking.user.photo? ? (cl_image_path booking.user.photo) : ('https://picsum.photos/g/200/300') %>');">
+              <div class="card-description">
+                <h2><%= booking.user.first_name.capitalize %></h2>
+                <p><%= booking.price %> € </p>
+              </div>
             </div>
-          </div>
-        <% end %>
-          <div class="text-center">
-            <%= simple_form_for [@event, @booking] do |f| %>
-            <%= hidden_field_tag(:user_id, user.id) %>
-            <%= f.submit "send a request", class: "btn btn-success", style: "width: 100%" %>
-            <% end %>
-          </div>
-
-      </div>
-
-    <% end %>
-
+          <% end %>
+            <div class="text-center ">
+              <% if booking.status = "pending" %>
+                <p class="status accepted"><%= booking.status %></p>
+              <% elsif booking.status = "declined" %>
+                <p class="status declined"><%= booking.status %></p>
+              <% else  %>
+                <p class="status accepted"><%= booking.status %></p>
+              <% end %>
+            </div>
+        </div>
+      <% end %>
+    </div>
   </div>
-</div>
+<% end %>
 
 
+<!-- Part 2 display sweeper available, build forms to create a booking -->
+<%if not @users.first.nil?  %>
+  <h3>Send request to those available Weepers</h3>
+  <div class="container">
+    <div class="row">
+
+      <% @users.each do |user|%>
+
+        <div class="col-xs-6 col-sm-4">
+
+          <%= link_to user_path(user) do %>
+            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= user.photo? ? (cl_image_path user.photo) : ('https://picsum.photos/g/200/300') %>');">
+              <div class="card-description">
+                <h2><%= user.first_name.capitalize %></h2>
+                <p><%= user.tarif %> € </p>
+              </div>
+            </div>
+          <% end %>
+            <div class="text-center">
+              <%= simple_form_for [@event, @booking] do |f| %>
+              <%= hidden_field_tag(:user_id, user.id) %>
+              <%= f.submit "send a request", class: "btn btn-success", style: "width: 100%" %>
+              <% end %>
+            </div>
+
+        </div>
+
+      <% end %>
+
+    </div>
+  </div>
+<% else  %>
+  <p>Your Weepers are the only one available aorund you. </p>
+<% end %>
