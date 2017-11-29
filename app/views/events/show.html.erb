@@ -7,36 +7,15 @@
   </div>
 </div>
 
+
+<!-- Part 1 display sweeper already booked or request send  -->
+
+<%= render 'show_bookings' %>
+
 <!-- Part 2 display sweeper available, build forms to create a booking -->
 
-<div class="container">
-  <div class="row">
+<%= render 'show_available_weepers' %>
 
-    <% @users.each do |user|%>
-
-      <div class="col-xs-6 col-sm-4">
-
-        <%= link_to user_path(user) do %>
-          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= user.photo? ? (cl_image_path user.photo) : ('https://picsum.photos/g/200/300') %>');">
-            <div class="card-description">
-              <h2><%= user.first_name.capitalize %></h2>
-              <p><%= user.tarif %> € </p>
-            </div>
-          </div>
-        <% end %>
-          <div class="text-center">
-            <%= simple_form_for [@event, @booking] do |f| %>
-            <%= hidden_field_tag(:user_id, user.id) %>
-            <%= f.submit "send a request", class: "btn btn-success", style: "width: 100%" %>
-            <% end %>
-          </div>
-
-      </div>
-
-    <% end %>
-
-  </div>
-</div>
 
 <div
   id="map"
