@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-3">
+      <%= simple_form_for [@event, @booking] do |f| %>
+      <%= hidden_field_tag(:user_id, @user.id) %>
+      <%= hidden_field_tag(:event_id, @event.id) %>
+      <%= f.label "Send a message to #{@user.first_name} with your booking" %>
+      <%= f.input :description, label: false %>
+      <%= f.submit "send a request", class: "btn btn-success", style: "width: 100%" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+

@@ -1,10 +1,10 @@
 <div class="user_information">
+  <% if policy(@user).edit? %>
+    <%= link_to edit_user_path(@user) do %>
+      <i class="fa fa-pencil" aria-hidden="true"></i>
+    <% end %>
+  <% end %>
   <div class="flex">
-    <% if policy(@user).edit? %>
-  <%= link_to edit_user_path(@user) do %>
-  <i class="fa fa-pencil" aria-hidden="true"></i>
-  <% end %>
-  <% end %>
     <div class="avatar">
       <%= cl_image_tag(@user.photo, class: "avatar dropdown-toggle")%>
     </div>
@@ -15,6 +15,9 @@
       <li class="details"><%= @user.email %></li>
       <li class="details"><%= @user.phone_number %></li>
       <li class="details"><%= @user.location %></li>
+      <% if @user.tarif %>
+        <li class="details">price: <%= @user.price %>€</li>
+      <% end %>
     </ul>
   </div>
   <div class="description">
