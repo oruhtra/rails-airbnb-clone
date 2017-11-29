@@ -1,21 +1,75 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+pictures_pleureurs = []
+pictures_pleureurs << "https://mymodernmet.com/wp/wp-content/uploads/archive/d4M9tmZdZGmsR0w7dOoN_1082121253.jpeg"
+pictures_pleureurs << "https://zibwall.files.wordpress.com/2014/08/funny-baby-face-crying-1.jpg?w=210"
+pictures_pleureurs << "https://4thdivisionmoneyfam.files.wordpress.com/2015/01/wpid-man-crying-pic.jpg"
+pictures_pleureurs << "http://slightlywarped.com/crapfactory/curiosities/2011/july/images/the_most_depressing_02.jpg"
+pictures_pleureurs << "http://bronxbardetroit.com/wp-content/uploads/2017/10/funny-baby-face-crying-6-you-can-search-every-type-of-pic-here-on-funny-pictures-of-people-crying.jpg"
+pictures_pleureurs << "https://i.pinimg.com/736x/4b/ca/34/4bca34fad61432553bbde9a67948eef7--funeral.jpg"
+pictures_pleureurs << "https://mutterhals.files.wordpress.com/2014/03/images1.jpg"
+pictures_pleureurs << "https://i.pinimg.com/736x/b0/72/62/b0726223102fec57edb8bfbb84227c0a--crying-face-gymhumor.jpg"
+pictures_pleureurs << "https://www.creativeboom.com/uploads/articles/83/832c2a47ce810b6ad2e4df835201873787566937_1100.jpg"
+pictures_pleureurs << "http://cdn3.lostateminor.com/wp-content/uploads/2010/05/Marina-Abromovic-Cry-2.jpg"
+pictures_pleureurs << "https://www.readingthepictures.org/files/2011/12/mourning-Kim-Jong-Il-2.jpg"
+pictures_pleureurs << "http://www.thamike.com/fn_images/crying.jpg"
+pictures_pleureurs << "https://tcdh.files.wordpress.com/2011/02/431983931.jpg"
+pictures_pleureurs << "http://images.amcnetworks.com/ifc.com/wp-content/uploads/2014/12/Daryl-Crying.jpg"
+pictures_pleureurs << "https://i.pinimg.com/474x/ce/b1/3a/ceb13aa4cad6b4cd7c8e3ec5ffa39951--funeral-emotion.jpg"
+pictures_pleureurs << "https://www.creativeboom.com/uploads/articles/5b/5b30992623189e4fb7f09f23b430281d2f2b2dd2_1100.jpg"
+pictures_pleureurs << "https://joshblakesley.files.wordpress.com/2016/06/crying.jpg"
+pictures_pleureurs << "https://ichef.bbci.co.uk/news/640/media/images/57405000/jpg/_57405209_jex_1268358_de28-1.jpg"
+pictures_pleureurs << "https://i.pinimg.com/736x/0f/8d/b4/0f8db475d5c90cf6f4039a0fc554711a--lonely-old-age.jpg"
+pictures_pleureurs << "https://image1.masterfile.com/getImage/NjIzLTA0MjU0OTc4ZW4uMDAwMDAwMDA=AF5L94/623-04254978en_Masterfile.jpg"
 
-p "création de users"
+p "Creating 20 pleureurs"
 
-User.create(first_name: "Bob",last_name: "paillard", status: true, tarif: 88, description: "pleureur de fou", password: "11111111", password_confirmation: "11111111", email: "bob@gmail.com")
-User.create(first_name: "fabien",last_name: "glauck", status: true, tarif: 123, description: "pleureur depuis 5 ans", password: "555555555", password_confirmation: "555555555", email: "glauck@gmail.com")
-User.create(first_name: "fanny",last_name: "pomme", status: false, password: "222222222", password_confirmation: "222222222", email: "bfanny@gmail.com")
+20.times do |i|
+   passeword = Faker::Internet.password(8)
+   url = pictures_pleureurs [i - 1]
+   user = User.new(
+   first_name: Faker::Name.first_name,
+   last_name: Faker::Cat.name,
+   status: true,
+   tarif: (56..250).to_a.sample,
+   description: Faker::HowIMetYourMother.quote,
+   password: passeword,
+   password_confirmation: passeword,
+   email: Faker::Internet.safe_email,
+   phone_number: Faker::Number.number(10),
+   location: Faker::Address.street_address
+   )
+  user.remote_photo_url = url
+  user.save
+end
+
+# useless
+# pictures = []
+# pictures << "https://i.pinimg.com/736x/1b/eb/2d/1beb2d92e09cf5fa93c38966a199c206--dieter-men-portrait.jpg"
+# p "Creating 1 person and 1 event without bookings "
+# 1.times do |i|
+#    passeword = Faker::Internet.password(8)
+#    url = pictures[i - 1]
+#    user = User.new(
+#    first_name: Faker::Name.first_name,
+#    last_name: Faker::Cat.name,
+#    status: false,
+#    password: passeword,
+#    password_confirmation: passeword,
+#    email: Faker::Internet.safe_email,
+#    phone_number: Faker::Number.number(10),
+#    location: Faker::Address.street_address
+#    )
+#    user.remote_photo_url = url
+#    user.save
+
+#   pleureurs = User.where(status: true)
+#   event = Event.new(
+#   title: "Burrial",
+#   date:"02/12/2018",
+#   location: "#{Faker::Address.city} Cemetery",
+#   )
+#   event.user = user
+#   event.save
+# end
 
 
-
-p "creation d'événements"
-
-Event.create(title: "enterrement madame B", date:"11/10/2018", location: "Paris", user_id: 3)
-Event.create(title: "enterrement monsieur bateau", date:"15/10/2018", location: "Bordeaux", user_id: 3)
 
