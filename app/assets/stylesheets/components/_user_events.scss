@@ -1,7 +1,9 @@
 .events {
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
   padding: 20px 10px;
   margin-bottom: 10px;
+  background-color: white;
+  border-radius: 5px;
 }
 
 .events .title {
@@ -12,35 +14,33 @@
 
 .events .event-card {
   margin-bottom: 10px;
-}
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
 
-.events .event-content {
-  padding: 5px;
-  border-radius: 10px;
-  display: flex;
-  justify-items: space-around;
-}
-
-.events .event-content:hover {
+  &:hover {
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+  }
 }
 
-.events .event-description {
-  padding: 0 20px;
-  min-width: 100px;
-  margin-right: 20px;
-  border-right: 1px solid rgba(220,224,244,1);
+
+.event-description {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border-bottom: 1px solid rgba(220,224,244,1);
+  background-color: #F4F4F4;
 
   h3 {
     font-size: 20px;
-    margin-bottom: 0px;
+    flex-grow: 1;
+    margin: 0;
   }
 
   p {
     font-size: 15px;
-    font-weight: lighter;
+    font-weight: normal;
     opacity: 0.6;
-    margin-top: 5px;
+    margin: 0;
   }
 
   .hover {
@@ -50,20 +50,33 @@
   }
 }
 
-.events .booking-title {
-  font-size: 20px;
-  font-weight: normal;
-  color: rgba(0, 0, 0,0.4);
+.event-bookings {
+  background-color: white;
+  padding: 10px;
 }
+
+.add-booking {
+  padding: 10px;
+  color: black;
+
+  p {
+    margin: 0;
+  }
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+
 
 .events .avatar {
   height: 50px;
   width: 50px;
   border-radius: 50%;
-  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-.message {
+.event-bookings .message {
   display: flex;
   align-items: center;
   padding: 20px;
