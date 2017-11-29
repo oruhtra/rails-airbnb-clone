@@ -41,7 +41,7 @@
 
 <!-- Part 2 display sweeper available, build forms to create a booking -->
 <%if not @users.first.nil?  %>
-  <h3>Send request to those available Weepers</h3>
+  <h3>Send request to the available Weepers</h3>
   <div class="container">
     <div class="row">
 
@@ -57,19 +57,12 @@
               </div>
             </div>
           <% end %>
-            <div class="text-center">
-              <%= simple_form_for [@event, @booking] do |f| %>
-              <%= hidden_field_tag(:user_id, user.id) %>
-              <%= f.submit "send a request", class: "btn btn-success", style: "width: 100%" %>
-              <% end %>
-            </div>
 
-          </div>
-        <% end %>
           <div class="text-center">
             <%= link_to new_event_booking_path(@event, user_id: user) do %>
-              <div class="btn btn-success">Send a request</div>
+              <div class="btn btn-success" style="width: 100%">Send a request</div>
             <% end %>
+          </div>
           </div>
 
 
@@ -80,5 +73,5 @@
     </div>
   </div>
 <% else  %>
-  <p>Your Weepers are the only one available aorund you. </p>
+  <p>Your Weepers are the only one available around you. </p>
 <% end %>
