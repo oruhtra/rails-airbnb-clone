@@ -1,6 +1,6 @@
 <%if not @bookings.first.nil?  %>
-  <div class="event-show-bookings">
-    <h3>Your current bookings</h3>
+<div class="event-show-bookings">
+    <h4>Your current bookings</h4>
       <div class="container">
         <div class="row">
           <% @bookings.each do |booking| %>
@@ -25,7 +25,7 @@
                     <% end %>
                   </div>
                   <div class="booking-description">
-                    <p><%= booking.description %></p>
+                    <p><%= booking.description[0..50] %>...</p>
                   </div>
                 </div>
               </div>

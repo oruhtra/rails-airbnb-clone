@@ -1,4 +1,11 @@
 <div class="events">
+  <% if @events.empty?  %>
+    <%= link_to new_event_path do %>
+    <div class="flex text-center">
+      <i class="fa fa-plus fa-bg" aria-hidden="true">  Create an event</i>
+    </div>
+    <% end %>
+  <% else %>
   <p class="title text-center">All your events</p>
 
     <% @events.each do |e| %>
@@ -33,8 +40,9 @@
                     <p><%= e.date %></p>
                   </div>
                   <div class="message-body">
+                    <p><strong><em>You:</em></strong></p>
                     <p>
-                      <%= b.user.description %>
+                      <%= b.description %>
                     </p>
                   </div>
                   <div class="message-status">
@@ -66,6 +74,8 @@
       </div>
 
     <% end %>
+
+  <% end %>
 
 </div>
 

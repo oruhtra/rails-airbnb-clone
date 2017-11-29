@@ -1,0 +1,33 @@
+<div class="event-show-bookings">
+<%if not @users.first.nil?  %>
+  <h4>Available Weepers around you</h4>
+  <div class="container">
+    <div class="row">
+
+      <% @users.each do |user|%>
+
+        <div class="col-xs-6 col-sm-4">
+
+          <%= link_to user_path(user, event_id: @event) do %>
+            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= user.photo? ? (cl_image_path user.photo) : ('https://picsum.photos/g/200/300') %>');">
+              <div class="card-description">
+                <h2><%= user.first_name.capitalize %></h2>
+                <p><%= user.tarif %> € </p>
+              </div>
+            </div>
+          <% end %>
+
+          <div class="text-center">
+            <%= link_to new_event_booking_path(@event, user_id: user) do %>
+              <div class="btn btn-success" style="width: 100%">Send a request</div>
+            <% end %>
+          </div>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+<% else  %>
+  <h4>There are no weepers available around you</h4>
+<% end %>
+</div>

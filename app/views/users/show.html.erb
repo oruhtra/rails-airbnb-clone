@@ -8,15 +8,25 @@
       </div>
 
       <div class="col-md-8">
+        <%= render 'profile_event_list' %>
 
-      <%= render 'profile_event_list' %>
-
-      <%= render 'profile_booking_list' %>
+      <% if !@bookings.empty?  %>
+        <%= render 'profile_booking_list' %>
+      <% end %>
 
       </div>
       <% else %>
       <div class="col-md-6 col-md-offset-3">
       <%= render 'profile_user_information' %>
+
+      <% if !@event.nil? %>
+
+        <div class="text-center">
+          <%= link_to new_event_booking_path(@event, user_id: @user) do %>
+            <div class="btn btn-success" style="width: 100%">Send a request</div>
+          <% end %>
+        </div>
+      <% end %>
 
       </div>
     <% end %>
