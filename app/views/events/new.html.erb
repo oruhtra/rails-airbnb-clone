@@ -8,7 +8,7 @@
       <%= simple_form_for [@event] do |f| %>
         <%= f.input :title %>
         <%= f.input :location %>
-        <%= f.input :date %>
+        <%= f.input :date, as: :string, input_html: { class: "datepicker" } %>
         <div class= "text-center margin_top">
           <% if policy(Event).create? %>
         <%= f.submit class:"btn-medium"%>
