@@ -16,9 +16,9 @@
                 <% end %>
                 <div class="event-booking-content">
                   <div class="message-status">
-                    <% if booking.status = "pending" %>
+                    <% if booking.status == "pending" %>
                       <p class="status pending">Status: <%= booking.status %></p>
-                    <% elsif booking.status = "declined" %>
+                    <% elsif booking.status == "declined" %>
                       <p class="declined">Status: <%= booking.status %></p>
                     <% else  %>
                       <p class="accepted">Status: <%= booking.status %></p>

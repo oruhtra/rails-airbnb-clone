@@ -23,7 +23,7 @@ pictures_pleureurs << "https://image1.masterfile.com/getImage/NjIzLTA0MjU0OTc4ZW
 p "Creating 20 pleureurs"
 
 20.times do |i|
-   passeword = Faker::Internet.password(8)
+   passeword = "123456"
    url = pictures_pleureurs [i - 1]
    user = User.new(
    first_name: Faker::Name.first_name,
