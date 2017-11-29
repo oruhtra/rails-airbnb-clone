@@ -1,6 +1,6 @@
-function autocomplete() {
+function autocomplete_user() {
   document.addEventListener("DOMContentLoaded", function() {
-    var eventlocation = document.getElementById('event_location');
+    var eventlocation = document.getElementById('user_location');
 
     if (eventlocation) {
       var autocomplete = new google.maps.places.Autocomplete(eventlocation, { types: [ 'geocode' ] });
@@ -12,5 +12,5 @@ function autocomplete() {
     }
   });
 }
-export { autocomplete };
 
+export { autocomplete_user };

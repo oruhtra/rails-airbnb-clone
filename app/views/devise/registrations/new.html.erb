@@ -10,7 +10,11 @@
         <%= f.input :last_name, required: true %>
         <%= f.label :status, "Etes vous un pleureur ?" %>
         <%= f.check_box :status %>
-        <%= f.input :description, required: true %>
+        <div class="toto" id="hiddenfield">
+          <%= f.input :description, required: true %>
+          <%= f.input :tarif, required: :true %>
+          <%= f.input :location, required: :true %>
+        </div>
         <%= f.input :email, required: true %>
         <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
         <%= f.input :password_confirmation, required: true %>
