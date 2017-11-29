@@ -12,4 +12,7 @@ class User < ApplicationRecord
   validates :description, presence: true, if: :status
 
   mount_uploader :photo, PhotoUploader
+
+  geocoded_by :location
+  after_validation :geocode, if: :location_changed?
 end

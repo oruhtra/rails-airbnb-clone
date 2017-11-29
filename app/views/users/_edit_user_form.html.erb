@@ -6,6 +6,11 @@
       <%= f.input :last_name %>
       <%= f.label :status, "Etes vous un pleureur ?" %>
       <%= f.check_box :status %>
+      <div class="toto" id="hiddenfield">
+        <%= f.input :description, required: true %>
+        <%= f.input :tarif, required: :true %>
+        <%= f.input :location, required: :true %>
+      </div>
       <%= f.input :description %>
       <%= f.input :phone_number %>
       <%= f.input :tarif %>
