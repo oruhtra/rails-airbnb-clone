@@ -9,39 +9,13 @@
 
 
 <!-- Part 1 display sweeper already booked or request send  -->
-<%if not @bookings.first.nil?  %>
-  <h3>Your resquested Weeper </h3>
-  <div class="container">
-    <div class="row">
-      <% @bookings.each do |booking| %>
-        <div class="col-xs-6 col-sm-4">
-          <%= link_to user_path(booking.user) do %>
-            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= booking.user.photo? ? (cl_image_path booking.user.photo) : ('https://picsum.photos/g/200/300') %>');">
-              <div class="card-description">
-                <h2><%= booking.user.first_name.capitalize %></h2>
-                <p><%= booking.price %> € </p>
-              </div>
-            </div>
-          <% end %>
-            <div class="text-center ">
-              <% if booking.status = "pending" %>
-                <p class="status accepted"><%= booking.status %></p>
-              <% elsif booking.status = "declined" %>
-                <p class="status declined"><%= booking.status %></p>
-              <% else  %>
-                <p class="status accepted"><%= booking.status %></p>
-              <% end %>
-            </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
-<% end %>
+
+<%= render 'show_bookings' %>
 
 
 <!-- Part 2 display sweeper available, build forms to create a booking -->
 <%if not @users.first.nil?  %>
-  <h3>Send requests to available Weepers</h3>
+  <h3>Available Weepers around you</h3>
   <div class="container">
     <div class="row">
 

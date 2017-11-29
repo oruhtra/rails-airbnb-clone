@@ -1,0 +1,37 @@
+<%if not @bookings.first.nil?  %>
+  <div class="event-show-bookings">
+    <h3>Your current bookings</h3>
+      <div class="container">
+        <div class="row">
+          <% @bookings.each do |booking| %>
+            <div class="col-xs-6 col-sm-4">
+              <div class="booking-card">
+                <%= link_to user_path(booking.user) do %>
+                  <div class="card small" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= booking.user.photo? ? (cl_image_path booking.user.photo) : ('https://picsum.photos/g/100/100') %>');">
+                    <div class="card-description">
+                      <h2><%= booking.user.first_name.capitalize %></h2>
+                      <p><%= booking.user.tarif %></p>
+                    </div>
+                  </div>
+                <% end %>
+                <div class="event-booking-content">
+                  <div class="message-status">
+                    <% if booking.status = "pending" %>
+                      <p class="status pending">Status: <%= booking.status %></p>
+                    <% elsif booking.status = "declined" %>
+                      <p class="declined">Status: <%= booking.status %></p>
+                    <% else  %>
+                      <p class="accepted">Status: <%= booking.status %></p>
+                    <% end %>
+                  </div>
+                  <div class="booking-description">
+                    <p><%= booking.description %></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+  </div>
+<% end %>
