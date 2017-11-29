@@ -7,7 +7,6 @@
   </div>
 </div>
 
-
 <!-- Part 1 display sweeper already booked or request send  -->
 
 <%= render 'show_bookings' %>
@@ -15,3 +14,13 @@
 <!-- Part 2 display sweeper available, build forms to create a booking -->
 
 <%= render 'show_available_weepers' %>
+
+
+<div
+  id="map"
+  style="width: 50%;
+  height: 600px;
+  margin-top: 30px;"
+  data-markers="<%= @markers.to_json %>"
+></div>
+

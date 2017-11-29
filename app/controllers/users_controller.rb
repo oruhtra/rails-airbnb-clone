@@ -6,6 +6,16 @@ class UsersController < ApplicationController
     @bookings = @user.bookings
     @event = Event.find(params[:event_id]) if !params[:event_id].nil?
     authorize @user
+    
+    @users = User.where.not(latitude: nil, longitude: nil)
+
+    @markers = @users.map do |user|
+      {
+        lat: user.latitude,
+        lng: user.longitude#,
+        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
+      }
+    end
   end
 
   def edit
