@@ -25,9 +25,8 @@
           </div>
         <% end %>
           <div class="text-center">
-            <%= simple_form_for [@event, @booking] do |f| %>
-            <%= hidden_field_tag(:user_id, user.id) %>
-            <%= f.submit "send a request", class: "btn btn-success", style: "width: 100%" %>
+            <%= link_to new_event_booking_path(@event, user_id: user) do %>
+              <div class="btn btn-success">Send a request</div>
             <% end %>
           </div>
 
