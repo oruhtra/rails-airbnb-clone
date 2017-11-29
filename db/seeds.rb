@@ -6,11 +6,24 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-p "création de users"
+p "Creating 20 pleureurs"
 
-User.create(first_name: "Bob",last_name: "paillard", status: true, tarif: 88, description: "pleureur de fou", password: "11111111", password_confirmation: "11111111", email: "bob@gmail.com")
-User.create(first_name: "fabien",last_name: "glauck", status: true, tarif: 123, description: "pleureur depuis 5 ans", password: "555555555", password_confirmation: "555555555", email: "glauck@gmail.com")
-User.create(first_name: "fanny",last_name: "pomme", status: false, password: "222222222", password_confirmation: "222222222", email: "bfanny@gmail.com")
+20.times do
+  passeword = Faker::Internet.password(8)
+  User.create(
+   first_name: Faker::Name.first_name,
+   last_name: Faker::Cat.name,
+   status: true,
+   tarif: (56..250).to_a.sample,
+   description: Faker::HowIMetYourMother.quote,
+   password: passeword,
+   password_confirmation: passeword,
+   email: Faker::Internet.safe_email,
+   photo: "https://loremflickr.com/320/240/man,girl,profil,sad",
+   phone_number: Faker::Number.number(10),
+   location: Faker::Address.street_address
+   )
+end
 
 
 
