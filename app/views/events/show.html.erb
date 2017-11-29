@@ -64,6 +64,15 @@
               <% end %>
             </div>
 
+          </div>
+        <% end %>
+          <div class="text-center">
+            <%= link_to new_event_booking_path(@event, user_id: user) do %>
+              <div class="btn btn-success">Send a request</div>
+            <% end %>
+          </div>
+
+
         </div>
 
       <% end %>
