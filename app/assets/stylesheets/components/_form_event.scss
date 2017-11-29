@@ -1,7 +1,39 @@
 .form {
-  color: white
+  color: white;
+  background-color: black;
+  padding: 60px;
+  border-radius: 40px;
+  margin: 30px;
 }
 
 .toto {
   display: none;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.margin_top {
+  padding-top: 50px;
+}
+
+.img-cover {
+  background: linear-gradient(rgba(255,255,255,1), rgba(255,255,255,0.2)), url("http://medias.photodeck.com/f165d64e-2cef-11e3-939e-39d86c01ca45/2010-10-09_verdun_0045_uxga.jpg");
+}
+
+.btn-medium {
+  color: black;
+  border: 1px solid #999999;
+  padding: 10px 15px;
+  border-radius: 50px;
+  font-weight: lighter;
+  opacity: 1;
+}
+.btn-medium:hover {
+  opacity: 0.6;
+  text-decoration: none;
+  color: #999999;
 }
