@@ -35,7 +35,7 @@ p "Creating 20 pleureurs"
    password_confirmation: passeword,
    email: Faker::Internet.safe_email,
    phone_number: Faker::Number.number(10),
-   location: Faker::Address.street_address
+   location: ["Paris", "Bordeaux", "Toulouse", "Lille", "Lyon", "Marseille", "Nice", "Nantes", "Strasbourg", "Montpellier"].sample
    )
   user.remote_photo_url = url
   user.save
