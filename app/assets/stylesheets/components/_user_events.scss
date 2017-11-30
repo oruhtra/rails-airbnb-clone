@@ -146,3 +146,13 @@
   }
 }
 
+.message-rating {
+  padding-left: 20px;
+  color: rgba(0,0,0,0.4);
+  flex-grow: 0;
+  text-align: center;
+}
+.message-rating p {
+  margin: 6px 0;
+  font-size: 13px;
+}

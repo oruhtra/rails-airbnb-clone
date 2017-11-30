@@ -41,35 +41,39 @@ p "Creating 20 pleureurs"
   user.save
 end
 
-# useless
-# pictures = []
-# pictures << "https://i.pinimg.com/736x/1b/eb/2d/1beb2d92e09cf5fa93c38966a199c206--dieter-men-portrait.jpg"
-# p "Creating 1 person and 1 event without bookings "
-# 1.times do |i|
-#    passeword = Faker::Internet.password(8)
-#    url = pictures[i - 1]
-#    user = User.new(
-#    first_name: Faker::Name.first_name,
-#    last_name: Faker::Cat.name,
-#    status: false,
-#    password: passeword,
-#    password_confirmation: passeword,
-#    email: Faker::Internet.safe_email,
-#    phone_number: Faker::Number.number(10),
-#    location: Faker::Address.street_address
-#    )
-#    user.remote_photo_url = url
-#    user.save
 
-#   pleureurs = User.where(status: true)
-#   event = Event.new(
-#   title: "Burrial",
-#   date:"02/12/2018",
-#   location: "#{Faker::Address.city} Cemetery",
-#   )
-#   event.user = user
-#   event.save
-# end
+p "Creating an event, a booking and a review "
+30.times do
+  user = User.all.sample
+  pleureur = User.where(status: true).sample
+  ville = ["Paris", "Bordeaux", "Toulouse", "Lille", "Lyon", "Marseille", "Nice", "Nantes", "Strasbourg", "Montpellier"].sample
+
+  my_event = Event.new(
+  title: "Burrial in #{ville}",
+  date: Faker::Time.between(DateTime.now - 1000, DateTime.now),
+  location: "#{ville}"
+  )
+  my_event.user = user
+  my_event.save
+
+  booking = Booking.new(
+  description: "Hello #{user.first_name}",
+  price: "#{user.tarif}",
+  status: "accepted"
+  )
+  booking.user = pleureur
+  booking.event = my_event
+  booking.save
+
+   review = Review.new(
+   content: Faker::ChuckNorris.fact,
+   rating: (1..5).to_a.sample
+   )
+  review.booking = booking
+  review.save
+
+end
+
 
 
 
