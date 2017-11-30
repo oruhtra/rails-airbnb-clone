@@ -8,9 +8,7 @@ class EventsController < ApplicationController
     @users = User.where(status: true).where.not(id: @iduser_booked.push(@event.user_id)).near(@event.location, 50)
     authorize @event
 
-    @users_location = User.where.not(latitude: nil, longitude: nil)
-
-    @markers = @users_location.map do |user|
+    @markers = @users.map do |user|
       {
         lat: user.latitude,
         lng: user.longitude#,
