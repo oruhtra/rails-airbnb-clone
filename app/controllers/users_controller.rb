@@ -6,9 +6,12 @@ class UsersController < ApplicationController
     @bookings = @user.bookings
     @event = Event.find(params[:event_id]) if !params[:event_id].nil?
     @reviews = @user.reviews
+    @pending_reviews = pending_reviews(@user)
     authorize @user
-
     @users = User.where.not(latitude: nil, longitude: nil)
+
+    #needed for creating review
+    @review = Review.new
 
     @markers = @users.map do |user|
       {
@@ -39,4 +42,14 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:first_name, :last_name, :description, :phone_number, :photo, :location)
   end
+
+  def pending_reviews(user) # return past bookings, accepted without reviews
+    pending_reviews = []
+    @past_events = @user.events.select { |event| event.date < Time.now }
+    @past_events.each do |event|
+      event.bookings.each { |booking| pending_reviews << booking if booking.status == "accepted" && booking.review.nil? }
+    end
+    return pending_reviews
+  end
+
 end

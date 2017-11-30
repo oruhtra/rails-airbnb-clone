@@ -1,0 +1,33 @@
+<div class="pending_review">
+  <p class="title text-center">Add a review</p>
+
+  <% @pending_reviews.each do |booking| %>
+
+    <%= simple_form_for [booking, @review] do |f| %>
+    <div class="review">
+       <div class="text-center">
+          <h3><%= booking.event.title %> on <%= booking.event.date.strftime("%A, %b %d") %></h3>
+       </div>
+      <div class="review-top">
+        <div class="review-who">
+          <%= cl_image_tag(booking.user.photo, crop: :fill , class: "avatar") %>
+          <h3> <%= booking.user.first_name %></h3>
+        </div>
+        <div class="review-rating">
+          <%= f.input :rating, collection: 0..5,  label: false, prompt: "Rating" %>
+        </div>
+      </div>
+
+      <div class="review-bottom">
+        <div class="review-content">
+          <%= f.input :content,  label: false, placeholder: 'Here for your review'%>
+        </div>
+      </div>
+      <div class="review-button text-center">
+        <%= f.submit '+ Add your review', :class => 'btn btn-review'  %>
+      </div>
+    </div>
+      <% end %>
+  <% end %>
+</div>
+

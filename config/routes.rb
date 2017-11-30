@@ -9,5 +9,9 @@ Rails.application.routes.draw do
   resources :events, only: [:new, :create, :show, :destroy] do
     resources :bookings, only: [:new, :create]
   end
-  resources :bookings, only: [:update, :destroy]
+
+  resources :bookings, only: [:update, :destroy] do
+    resources :reviews, only: [:new, :create]
+  end
+
 end
