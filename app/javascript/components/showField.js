@@ -5,7 +5,7 @@ const field = document.getElementById("hiddenfield");
 
 if (check) {
   check.addEventListener("click", (event) => {
-    field.classList.remove("toto");
+    field.classList.toggle("toto");
   });
   }
 }
