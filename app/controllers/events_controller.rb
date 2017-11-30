@@ -5,14 +5,13 @@ class EventsController < ApplicationController
     @booking = Booking.new
     @bookings = @event.bookings
     @iduser_booked = @bookings.map { |booking| booking.user.id }
-    @users = User.where(status: true).where.not(id: @iduser_booked.push(@event.user_id))
+    @users = User.where(status: true).where.not(id: @iduser_booked.push(@event.user_id)).near(@event.location, 50)
     authorize @event
-    @events = Event.where.not(latitude: nil, longitude: nil)
 
-    @markers = @events.map do |event|
+    @markers = @users.map do |user|
       {
-        lat: event.latitude,
-        lng: event.longitude#,
+        lat: user.latitude,
+        lng: user.longitude#,
         # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
       }
     end

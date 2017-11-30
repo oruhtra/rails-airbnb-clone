@@ -35,7 +35,7 @@ p "Creating 20 pleureurs"
    password_confirmation: passeword,
    email: Faker::Internet.safe_email,
    phone_number: Faker::Number.number(10),
-   location: ["Paris", "Bordeaux", "Reims", "Rennes", "Orleans", "Chartres", "Nice", "Toulouse"].sample
+   location: ["Paris", "Bordeaux", "Toulouse", "Lille", "Lyon", "Marseille", "Nice", "Nantes", "Strasbourg", "Montpellier"].sample
    )
   user.remote_photo_url = url
   user.save
@@ -46,7 +46,7 @@ p "Creating an event, a booking and a review "
 30.times do
   user = User.all.sample
   pleureur = User.where(status: true).sample
-  ville = ["Paris", "Bordeaux", "Reims", "Rennes", "Orleans", "Chartres", "Nice", "Toulouse"].sample
+  ville = ["Paris", "Bordeaux", "Toulouse", "Lille", "Lyon", "Marseille", "Nice", "Nantes", "Strasbourg", "Montpellier"].sample
 
   my_event = Event.new(
   title: "Burrial in #{ville}",
