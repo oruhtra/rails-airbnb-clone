@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     @bookings = @user.bookings
     @event = Event.find(params[:event_id]) if !params[:event_id].nil?
     authorize @user
-    
+
     @users = User.where.not(latitude: nil, longitude: nil)
 
     @markers = @users.map do |user|
@@ -36,6 +36,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :description, :phone_number, :photo)
+    params.require(:user).permit(:first_name, :last_name, :description, :phone_number, :photo, :location)
   end
 end
