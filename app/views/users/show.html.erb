@@ -1,59 +1,54 @@
 <div class="container user-profile-content">
   <div class="row">
 
-    <% if policy(@user).edit? %>
+    <% if policy(@user).edit? %> <!-- your profil  -->
       <div class="col-md-4">
-      <%= render 'profile_user_information' %>
-
+        <%= render 'profile_user_information' %>
       </div>
 
       <div class="col-md-8">
         <%= render 'profile_event_list' %>
 
-      <% if !@bookings.empty?  %>
-        <%= render 'profile_booking_list' %>
-      <% end %>
+        <% if !@bookings.empty?  %>
+          <%= render 'profile_booking_list' %>
+        <% end %>
+
+        <% if !@reviews.nil? %>
+          <%= render 'profile_review_list' %>
+        <% end %>
 
       </div>
-      <% else %>
-      <div class="col-md-6 col-md-offset-3">
-      <%= render 'profile_user_information' %>
 
-      <% if !@event.nil? %>
+      <% elsif !@reviews.nil? %> <!--  profil weeper with reviews  -->
+        <div class="col-md-4">
+          <%= render 'profile_user_information' %>
+        </div>
 
-        <div class="text-center">
-          <%= link_to new_event_booking_path(@event, user_id: @user) do %>
-            <div class="btn btn-success" style="width: 100%">Send a request</div>
+        <div class="col-md-8">
+          <% if !@reviews.nil? %>
+            <%= render 'profile_review_list' %>
           <% end %>
         </div>
-      <% end %>
+
+      <% else %> <!--  profil weeper without reviews  -->
+
+      <div class="col-md-6 col-md-offset-3">
+        <%= render 'profile_user_information' %>
+
+        <% if !@event.nil? %>
+
+          <div class="text-center">
+            <%= link_to new_event_booking_path(@event, user_id: @user) do %>
+              <div class="btn btn-success" style="width: 100%">Send a request</div>
+            <% end %>
+          </div>
+        <% end %>
 
       </div>
-    <% end %>
 
+    <% end %>
   </div>
 
 </div>
 
-
-<!-- Part 2 - Reviews  -->
-<% if !@reviews.nil? %>
-  <div class="container ">
-    <div class="row">
-      <div class="col-md-8">
-
-        <% @reviews.each do |review|  %>
-          <p><%= review.content %></p>
-          <p><%= review.rating %></p>
-          <p><%= review.booking.event.date %></p>
-          <p><%= review.booking.event.title %></p>
-          <p><%= review.booking.event.location %></p>
-          <p><%= review.booking.event.user.first_name %></p>
-          <p><%= review.booking.event.user.photo %></p>
-        <%end %>
-
-      </div>
-    </div>
-  </div>
-<% end %>
 
