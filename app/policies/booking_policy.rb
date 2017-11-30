@@ -1,9 +1,6 @@
 class BookingPolicy < ApplicationPolicy
-  def new?
-    record.user == user
-  end
   def create?
-    record.user == user
+    record.event.user == user
   end
   def destroy?
     record.event.user == user
