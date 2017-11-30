@@ -10,17 +10,15 @@
                   <div class="card-description">
                     <h2><%= booking.user.first_name.capitalize %></h2>
                     <p><%= booking.user.tarif %> € </p>
-                    <p>
-                      <% if booking.status == "pending" %>
-                        <p class="status pending">Status: <%= booking.status %></p>
-                      <% elsif booking.status == "declined" %>
-                        <p class="declined">Status: <%= booking.status %></p>
-                      <% else  %>
-                        <p class="accepted">Status: <%= booking.status %></p>
-                      <% end %>
-                    </p>
                   </div>
                 </div>
+                      <% if booking.status == "pending" %>
+                        <div class="btn btn-primary text-center" style="width: 100%;">Status: <%= booking.status %></div>
+                      <% elsif booking.status == "declined" %>
+                        <div class="btn btn-danger text-center" style="width: 100%;">Status: <%= booking.status %></div>
+                      <% else  %>
+                        <div class="btn btn-success text-center" style="width: 100%;">Status: <%= booking.status %></div>
+                      <% end %>
               <% end %>
             </div>
           </div>
