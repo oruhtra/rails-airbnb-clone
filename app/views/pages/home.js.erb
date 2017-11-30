@@ -1,0 +1,6 @@
+if (typeof(userProfiles) === 'undefined') {
+  var usersProfiles = document.getElementById('wrapper');
+}
+
+
+usersProfiles.innerHTML = "<%= j render 'user_profiles', users: @users %>";
