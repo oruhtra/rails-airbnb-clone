@@ -5,35 +5,21 @@
 <div class="container">
   <div class="row">
     <h3>Find a weeper close to you</h3>
-    <div id="custom-search-input">
-      <div class="input-group col-xs-4">
-        <input type="text" class="  search-query form-control" placeholder="Search" />
-          <span class="input-group-btn">
-          <button class="btn btn-danger" type="button">
-          <span class=" glyphicon glyphicon-search"></span>
-          </button>
-          </span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- all pleureurs -->
-<div class="container">
-  <div class="row">
-
-  <% @pleureurs.each do |pleureur| %>
-    <div class="col-xs-12 col-sm-4 col-md-3">
-      <%= link_to user_path(pleureur.id) do %>
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= pleureur.photo? ? (cl_image_path pleureur.photo) : ('https://picsum.photos/g/200/300') %>');">
-          <div class="card-description">
-            <h2><%= pleureur.first_name.capitalize %></h2>
-            <p><%= pleureur.tarif %> € </p>
-          </div>
-        </div>
+    <%= form_tag(root_path, method: :get, remote: true) do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Try 'Paris'"
+      %>
     <% end %>
-    </div>
-  <% end %>
   </div>
 </div>
+
+
+
+<!-- all users -->
+<div id="wrapper">
+  <%= render 'user_profiles' %>
+</div>
+
 
