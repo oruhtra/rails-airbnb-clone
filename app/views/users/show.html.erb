@@ -16,10 +16,9 @@
         <% if !@reviews.nil? %>
           <%= render 'profile_review_list' %>
         <% end %>
-
       </div>
 
-      <% elsif !@reviews.nil? %> <!--  profil weeper with reviews  -->
+      <% elsif !@reviews.first.nil? %> <!--  profil weeper with reviews  -->
         <div class="col-md-4">
           <%= render 'profile_user_information' %>
         </div>
@@ -36,19 +35,17 @@
         <%= render 'profile_user_information' %>
 
         <% if !@event.nil? %>
-
           <div class="text-center">
             <%= link_to new_event_booking_path(@event, user_id: @user) do %>
               <div class="btn btn-success" style="width: 100%">Send a request</div>
             <% end %>
           </div>
         <% end %>
-
       </div>
 
     <% end %>
-  </div>
 
+  </div>
 </div>
 
 

@@ -20,30 +20,30 @@ pictures_pleureurs << "https://ichef.bbci.co.uk/news/640/media/images/57405000/j
 pictures_pleureurs << "https://i.pinimg.com/736x/0f/8d/b4/0f8db475d5c90cf6f4039a0fc554711a--lonely-old-age.jpg"
 pictures_pleureurs << "https://image1.masterfile.com/getImage/NjIzLTA0MjU0OTc4ZW4uMDAwMDAwMDA=AF5L94/623-04254978en_Masterfile.jpg"
 
-# p "Creating 20 pleureurs"
+p "Creating 20 pleureurs"
 
-# 20.times do |i|
-#    passeword = "123456"
-#    url = pictures_pleureurs [i - 1]
-#    user = User.new(
-#    first_name: Faker::Name.first_name,
-#    last_name: Faker::Cat.name,
-#    status: true,
-#    tarif: (56..250).to_a.sample,
-#    description: Faker::HowIMetYourMother.quote,
-#    password: passeword,
-#    password_confirmation: passeword,
-#    email: Faker::Internet.safe_email,
-#    phone_number: Faker::Number.number(10),
-#    location: Faker::Address.street_address
-#    )
-#   user.remote_photo_url = url
-#   user.save
-# end
+20.times do |i|
+   passeword = "123456"
+   url = pictures_pleureurs [i - 1]
+   user = User.new(
+   first_name: Faker::Name.first_name,
+   last_name: Faker::Cat.name,
+   status: true,
+   tarif: (56..250).to_a.sample,
+   description: Faker::HowIMetYourMother.quote,
+   password: passeword,
+   password_confirmation: passeword,
+   email: Faker::Internet.safe_email,
+   phone_number: Faker::Number.number(10),
+   location: ["Paris", "Bordeaux", "Reims", "Rennes", "Orleans", "Chartres", "Nice", "Toulouse"].sample
+   )
+  user.remote_photo_url = url
+  user.save
+end
 
 
 p "Creating an event, a booking and a review "
-1.times do
+30.times do
   user = User.all.sample
   pleureur = User.where(status: true).sample
   ville = ["Paris", "Bordeaux", "Reims", "Rennes", "Orleans", "Chartres", "Nice", "Toulouse"].sample
@@ -69,7 +69,7 @@ p "Creating an event, a booking and a review "
    content: Faker::ChuckNorris.fact,
    rating: (1..5).to_a.sample
    )
-  review.booking = Booking.all.sample
+  review.booking = booking
   review.save
 
 end
