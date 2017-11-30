@@ -11,9 +11,15 @@ function audioPlayer(){
     $(this).parent().addClass("current-song");
 
   });
-  $("#audioPlayer").click(function(e){
-    alert("Vous avez perdu un proche, il est temps d'affronter la dure réalité")
-
+  $("#audioPlayer").on("ended", function(){
+    currentSong++;
+    if (currentSong == $("#playlist li a").length){
+      currentSong = 0;
+    };
+    $("#playlist li").removeClass("current-song");
+    $("#playlist li:eq("+currentSong+")").addClass("current-song");
+    $("#audioPlayer")[0].src = $(".current-song a").attr("href");
+    $("#audioPlayer")[0].play();
   });
 }
 export { audioPlayer };
