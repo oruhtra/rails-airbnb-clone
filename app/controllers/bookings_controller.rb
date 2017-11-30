@@ -12,7 +12,7 @@ class BookingsController < ApplicationController
     @user = User.find(params[:user_id])
     authorize @event
     @booking = Booking.create(booking_params)
-    @booking.update(status: "pending", price: @user.tarif, description: params[:booking][:description])
+    @booking.update(status: "pending", price: @user.tarif)
     redirect_to event_path(@event)
   end
 
@@ -33,7 +33,7 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.permit(:event_id, :user_id, :status, :description)
+    params.permit(:event_id, :user_id, :status)
   end
 
 end
