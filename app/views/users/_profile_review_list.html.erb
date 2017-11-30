@@ -1,3 +1,55 @@
+  <div class="events">
+
+  <p class="title text-center">All your reviews</p>
+
+    <% @reviews.each do |review| %>
+
+      <div class="event-card">
+
+          <div class="event-description">
+            <div class="event-title">
+              <h3><%= review.booking.event.title  %></h3>
+            </div>
+            <div class="event-date">
+              <p><%= review.booking.event.date %></p>
+            </div>
+            <div class="event-location">
+             <p><%= review.booking.event.location %></p>
+            </div>
+          </div>
+
+          <div class="event-bookings">
+
+             <div class="message">
+                  <div class="avatar">
+                    <%= cl_image_tag(review.booking.event.user.photo, class: "avatar")%>
+                  </div>
+                  <div class="message-name">
+                    <h3><%= review.booking.event.user.first_name%> </h3>
+                  </div>
+                  <div class="message-body">
+                    <p><%= review.content %></p>
+                  </div>
+                  <div class="message-body">
+                    <p><%= review.rating %> /5</p>
+                  </div>
+
+                </div>
+
+          </div>
+
+      </div>
+
+    <% end %>
+
+
+</div>
+
+
+
+
+
+<!--
   <div class="container ">
     <div class="row">
       <div class="col-xs-4 col-xs-offset-4">
@@ -14,4 +66,4 @@
 
       </div>
     </div>
-  </div>
+  </div> -->
