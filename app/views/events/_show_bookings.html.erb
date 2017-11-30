@@ -1,12 +1,7 @@
 <%if not @bookings.first.nil?  %>
-
-  <div class="event-show-bookings">
-
-    <h4>Your current bookings</h4>
-    <div class="container">
-
+<div class="event-show-bookings">
+  <h4 class="text-center">Your current bookings</h4>
       <div class="row">
-
         <% @bookings.each do |booking| %>
           <div class="col-xs-6 col-sm-4">
             <div class="booking-card">
@@ -17,31 +12,17 @@
                     <p><%= booking.user.tarif %> € </p>
                   </div>
                 </div>
-                      <% if booking.status == "pending" %>
-                        <div class="btn btn-primary text-center" style="width: 100%;">Status: <%= booking.status %></div>
-                      <% elsif booking.status == "declined" %>
-                        <div class="btn btn-danger text-center" style="width: 100%;">Status: <%= booking.status %></div>
-                      <% else  %>
-                        <div class="btn btn-success text-center" style="width: 100%;">Status: <%= booking.status %></div>
-                      <% end %>
+                <% if booking.status == "pending" %>
+                  <div class="btn btn-primary text-center pending-status" style="width: 100%;">Status: <%= booking.status %></div>
+                <% elsif booking.status == "declined" %>
+                  <div class="btn btn-danger text-center pending-status" style="width: 100%;">Status: <%= booking.status %></div>
+                <% else  %>
+                  <div class="btn btn-success text-center pending-status" style="width: 100%;">Status: <%= booking.status %></div>
+                <% end %>
               <% end %>
-              <div class="event-booking-content">
-                <div class="message-status">
-                  <% if booking.status == "pending" %>
-                    <p class="status pending">Status: <%= booking.status %></p>
-                  <% elsif booking.status == "declined" %>
-                    <p class="declined">Status: <%= booking.status %></p>
-                  <% else  %>
-                    <p class="accepted">Status: <%= booking.status %></p>
-                  <% end %>
-                </div>
-              </div>
+            </div>
           </div>
-        </div>
-      <% end %>
-
-    </div>
-
-  </div>
-  </div>
+        <% end %>
+      </div>
+</div>
 <% end %>
