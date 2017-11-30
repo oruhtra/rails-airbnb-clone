@@ -5,8 +5,9 @@ class UsersController < ApplicationController
     @events = @user.events
     @bookings = @user.bookings
     @event = Event.find(params[:event_id]) if !params[:event_id].nil?
+    @reviews = @user.reviews
     authorize @user
-    
+
     @users = User.where.not(latitude: nil, longitude: nil)
 
     @markers = @users.map do |user|

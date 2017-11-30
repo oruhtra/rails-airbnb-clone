@@ -20,56 +20,60 @@ pictures_pleureurs << "https://ichef.bbci.co.uk/news/640/media/images/57405000/j
 pictures_pleureurs << "https://i.pinimg.com/736x/0f/8d/b4/0f8db475d5c90cf6f4039a0fc554711a--lonely-old-age.jpg"
 pictures_pleureurs << "https://image1.masterfile.com/getImage/NjIzLTA0MjU0OTc4ZW4uMDAwMDAwMDA=AF5L94/623-04254978en_Masterfile.jpg"
 
-p "Creating 20 pleureurs"
+# p "Creating 20 pleureurs"
 
-20.times do |i|
-   passeword = "123456"
-   url = pictures_pleureurs [i - 1]
-   user = User.new(
-   first_name: Faker::Name.first_name,
-   last_name: Faker::Cat.name,
-   status: true,
-   tarif: (56..250).to_a.sample,
-   description: Faker::HowIMetYourMother.quote,
-   password: passeword,
-   password_confirmation: passeword,
-   email: Faker::Internet.safe_email,
-   phone_number: Faker::Number.number(10),
-   location: Faker::Address.street_address
-   )
-  user.remote_photo_url = url
-  user.save
-end
-
-# useless
-# pictures = []
-# pictures << "https://i.pinimg.com/736x/1b/eb/2d/1beb2d92e09cf5fa93c38966a199c206--dieter-men-portrait.jpg"
-# p "Creating 1 person and 1 event without bookings "
-# 1.times do |i|
-#    passeword = Faker::Internet.password(8)
-#    url = pictures[i - 1]
+# 20.times do |i|
+#    passeword = "123456"
+#    url = pictures_pleureurs [i - 1]
 #    user = User.new(
 #    first_name: Faker::Name.first_name,
 #    last_name: Faker::Cat.name,
-#    status: false,
+#    status: true,
+#    tarif: (56..250).to_a.sample,
+#    description: Faker::HowIMetYourMother.quote,
 #    password: passeword,
 #    password_confirmation: passeword,
 #    email: Faker::Internet.safe_email,
 #    phone_number: Faker::Number.number(10),
 #    location: Faker::Address.street_address
 #    )
-#    user.remote_photo_url = url
-#    user.save
-
-#   pleureurs = User.where(status: true)
-#   event = Event.new(
-#   title: "Burrial",
-#   date:"02/12/2018",
-#   location: "#{Faker::Address.city} Cemetery",
-#   )
-#   event.user = user
-#   event.save
+#   user.remote_photo_url = url
+#   user.save
 # end
+
+
+p "Creating an event, a booking and a review "
+1.times do
+  user = User.all.sample
+  pleureur = User.where(status: true).sample
+  ville = ["Paris", "Bordeaux", "Reims", "Rennes", "Orleans", "Chartres", "Nice", "Toulouse"].sample
+
+  my_event = Event.new(
+  title: "Burrial in #{ville}",
+  date: Faker::Time.between(DateTime.now - 1000, DateTime.now),
+  location: "#{ville}"
+  )
+  my_event.user = user
+  my_event.save
+
+  booking = Booking.new(
+  description: "Hello #{user.first_name}",
+  price: "#{user.tarif}",
+  status: "accepted"
+  )
+  booking.user = pleureur
+  booking.event = my_event
+  booking.save
+
+   review = Review.new(
+   content: Faker::ChuckNorris.fact,
+   rating: (1..5).to_a.sample
+   )
+  review.booking = Booking.all.sample
+  review.save
+
+end
+
 
 
 
