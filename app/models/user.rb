@@ -16,4 +16,14 @@ class User < ApplicationRecord
 
   geocoded_by :location
   after_validation :geocode, if: :location_changed?
+
+  def pending_reviews# return past bookings, accepted without reviews
+    pending_reviews = []
+    @past_events =self.events.select { |event| event.date < Time.now }
+    @past_events.each do |event|
+      event.bookings.each { |booking| pending_reviews << booking if booking.status == "accepted" && booking.review.nil? }
+    end
+    return pending_reviews
+  end
+
 end

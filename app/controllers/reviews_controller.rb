@@ -1,6 +1,5 @@
 class ReviewsController < ApplicationController
 
-
 def create
   @review = Review.new(review_params)
   @review.booking = Booking.find(params[:booking_id])
@@ -9,7 +8,7 @@ def create
   if @review.save
     redirect_to user_path(@user)
   else
-    render :new   # ou bien   render "restaurants/show" # attention , il faut bien renvoyer @review
+    redirect_to user_path(@user)
   end
 end
 

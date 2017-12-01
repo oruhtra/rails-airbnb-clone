@@ -10,7 +10,7 @@
 
     <% @events.each do |e| %>
 
-      <div class="event-card">
+      <div class="event-card" id="ev-<%=e.id%>" >
 
           <div class="event-description">
             <div class="event-title">
@@ -22,7 +22,7 @@
             <div class="event-location">
              <p><%= e.location %></p>
             </div>
-            <%= link_to event_path(e), method: :delete do %>
+            <%= link_to event_path(e), method: :delete, remote: true do %>
               <i class="fa fa-times fa-bg status declined hover" aria-hidden="true"></i>
             <% end %>
           </div>
@@ -31,7 +31,7 @@
 
             <% e.bookings.each do |b| %>
 
-             <div class="message">
+             <div class="message" id="bk-<%=b.id%>">
                   <div class="avatar">
                     <%= cl_image_tag(b.user.photo, class: "avatar")%>
                   </div>
@@ -55,7 +55,7 @@
 
                   <div class="message-actions">
 
-                    <%= link_to booking_path(b), method: :delete do %>
+                    <%= link_to booking_path(b), method: :delete , remote: true do %>
                       <i class="fa fa-times fa-bg status declined hover" aria-hidden="true"></i>
                     <% end %>
 
