@@ -4,6 +4,9 @@
     <% if policy(@user).edit? %> <!-- your profil  -->
       <div class="col-md-4">
         <%= render 'profile_user_information' %>
+        <% if !@pending_reviews.first.nil? %>
+          <%= render 'profile_pendingreview_list' %>
+        <% end %>
       </div>
 
       <div class="col-md-8">
@@ -13,7 +16,7 @@
           <%= render 'profile_booking_list' %>
         <% end %>
 
-        <% if !@reviews.nil? %>
+        <% if !@reviews.first.nil? %>
           <%= render 'profile_review_list' %>
         <% end %>
       </div>
@@ -24,7 +27,7 @@
         </div>
 
         <div class="col-md-8">
-          <% if !@reviews.nil? %>
+          <% if !@reviews.first.nil? %>
             <%= render 'profile_review_list' %>
           <% end %>
         </div>
@@ -47,5 +50,4 @@
 
   </div>
 </div>
-
 
