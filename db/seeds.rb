@@ -22,7 +22,7 @@ pictures_pleureurs << "https://image1.masterfile.com/getImage/NjIzLTA0MjU0OTc4ZW
 
 p "Creating 20 pleureurs"
 
-10.times do |i|
+20.times do |i|
    passeword = "123456"
    url = pictures_pleureurs [i - 1]
    user = User.new(
@@ -35,43 +35,43 @@ p "Creating 20 pleureurs"
    password_confirmation: passeword,
    email: Faker::Internet.safe_email,
    phone_number: Faker::Number.number(10),
-   location: ["Paris 10eme", "Paris 11eme"].sample
+   location: ["Paris 10eme", "Paris 11eme", "Paris 12eme", "Paris 13eme", "Paris 9eme", "Paris 7eme", "Paris 5eme", "Paris 3eme", "Paris 2eme", "Paris 1er", "Paris 20eme"].sample
    )
   user.remote_photo_url = url
   user.save
 end
 
 
-# p "Creating an event, a booking and a review "
-# 30.times do
-#   user = User.all.sample
-#   pleureur = User.where(status: true).sample
-#   ville = ["Paris", "Bordeaux", "Toulouse", "Lille", "Lyon", "Marseille", "Nice", "Nantes", "Strasbourg", "Montpellier"].sample
+p "Creating an event, a booking and a review "
+30.times do
+  user = User.all.sample
+  pleureur = User.where(status: true).sample
+  ville = ["Paris", "Bordeaux", "Toulouse", "Lille", "Lyon", "Marseille", "Nice", "Nantes", "Strasbourg", "Montpellier"].sample
 
-#   my_event = Event.new(
-#   title: "Burrial in #{ville}",
-#   date: Faker::Time.between(DateTime.now - 1000, DateTime.now),
-#   location: "#{ville}"
-#   )
-#   my_event.user = user
-#   my_event.save
+  my_event = Event.new(
+  title: "Burrial in #{ville}",
+  date: Faker::Time.between(DateTime.now - 1000, DateTime.now),
+  location: "#{ville}"
+  )
+  my_event.user = user
+  my_event.save
 
-#   booking = Booking.new(
-#   price: "#{user.tarif}",
-#   status: "accepted"
-#   )
-#   booking.user = pleureur
-#   booking.event = my_event
-#   booking.save
+  booking = Booking.new(
+  price: "#{user.tarif}",
+  status: "accepted"
+  )
+  booking.user = pleureur
+  booking.event = my_event
+  booking.save
 
-#    review = Review.new(
-#    content: Faker::ChuckNorris.fact,
-#    rating: (1..5).to_a.sample
-#    )
-#   review.booking = booking
-#   review.save
+   review = Review.new(
+   content: Faker::ChuckNorris.fact,
+   rating: (1..5).to_a.sample
+   )
+  review.booking = booking
+  review.save
 
-# end
+end
 
 
 
