@@ -8,7 +8,7 @@ class BookingsController < ApplicationController
     @booking.status = "pending"
     @booking.price = @user.tarif
     @booking.save
-    redirect_to booking_messages_path(@booking)
+    redirect_to event_path(@event)
   end
 
   def update
