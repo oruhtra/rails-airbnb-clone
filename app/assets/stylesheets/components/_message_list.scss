@@ -1,0 +1,32 @@
+.message-list {
+  height: 65vh;
+  padding: 30px;
+  overflow: scroll;
+}
+
+.message-list .inbox-list {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.message-list .inbox-list .message-text {
+  padding: 10px;
+  background: white;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  max-width: 70%;
+  word-wrap: break-word;
+}
+
+
+.message-list .inbox-list .margin-right{
+  margin-left: auto
+}
+
+.message-sender-avatar {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  margin: 0 10px 0 5px;
+}
