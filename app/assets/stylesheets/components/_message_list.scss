@@ -4,13 +4,13 @@
   overflow: scroll;
 }
 
-.message-list .message-inbox {
+.message-list .inbox-list {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
 }
 
-.message-list .message-inbox .message-text {
+.message-list .inbox-list .message-text {
   padding: 10px;
   background: white;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
@@ -18,7 +18,7 @@
 }
 
 
-.message-list .message-inbox .margin-right{
+.message-list .inbox-list .margin-right{
   margin-left: auto
 }
 
@@ -26,5 +26,5 @@
   height: 30px;
   width: 30px;
   border-radius: 50%;
-  margin: 0 5px 0 5px;
+  margin: 0 10px 0 5px;
 }

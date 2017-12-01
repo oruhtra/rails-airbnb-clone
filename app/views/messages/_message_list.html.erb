@@ -1,6 +1,6 @@
 <div class="message-list">
   <% @messages.reverse.each do |m| %>
-    <div class="message-inbox">
+    <div class="inbox-list">
       <% if m.user == current_user %>
         <div class="message-text margin-right">
           <%= m.content %>
