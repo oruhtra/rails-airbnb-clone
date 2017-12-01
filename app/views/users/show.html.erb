@@ -3,39 +3,39 @@
 
     <% if policy(@user).edit? %> <!-- your profil  -->
       <div class="col-md-4">
-        <%= render 'profile_user_information' %>
+        <%= render 'users/profile_user_information' %>
         <% if !@pending_reviews.first.nil? %>
-          <%= render 'profile_pendingreview_list' %>
+          <%= render 'users/profile_pendingreview_list' %>
         <% end %>
       </div>
 
       <div class="col-md-8">
-        <%= render 'profile_event_list' %>
+        <%= render 'users/profile_event_list' %>
 
         <% if !@bookings.empty?  %>
-          <%= render 'profile_booking_list' %>
+          <%= render 'users/profile_booking_list' %>
         <% end %>
 
         <% if !@reviews.first.nil? %>
-          <%= render 'profile_review_list' %>
+          <%= render 'users/profile_review_list' %>
         <% end %>
       </div>
 
       <% elsif !@reviews.first.nil? %> <!--  profil weeper with reviews  -->
         <div class="col-md-4">
-          <%= render 'profile_user_information' %>
+          <%= render 'users/profile_user_information' %>
         </div>
 
         <div class="col-md-8">
           <% if !@reviews.first.nil? %>
-            <%= render 'profile_review_list' %>
+            <%= render 'users/profile_review_list' %>
           <% end %>
         </div>
 
       <% else %> <!--  profil weeper without reviews  -->
 
       <div class="col-md-6 col-md-offset-3">
-        <%= render 'profile_user_information' %>
+        <%= render 'users/profile_user_information' %>
 
         <% if !@event.nil? %>
           <div class="text-center">
