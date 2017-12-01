@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-3">
+      <%= simple_form_for [@booking, @message] do |f| %>
+      <%= hidden_field_tag(:user_id, @user.id) %>
+      <%= f.input :content, label: false %>
+      <%= f.submit "send message", class: "btn btn-success", style: "width: 100%" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<ul>
+  <% @messages.each do |m| %>
+    <li><%= m.content %></li>
+  <% end %>
+</ul>
