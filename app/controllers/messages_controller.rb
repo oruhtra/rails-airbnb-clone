@@ -4,6 +4,15 @@ class MessagesController < ApplicationController
     @user = current_user
     @messages = policy_scope(Message).order(created_at: :desc).where(booking: @booking)
     @message = Message.new
+    @bookings = []
+    @user.bookings.each do |b|
+      @bookings << b
+    end
+    @user.events.each do |e|
+      e.bookings.each do |b|
+        @bookings << b
+      end
+    end
   end
 
   def create
