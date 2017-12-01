@@ -48,11 +48,10 @@
                       <% end %>
                     </p>
                   </div>
-                  <div class="message-status">
-                    <p class="status pending"><%= b.status %></p>
-                    <p class="price"><%= b.price %>€</p>
-                  </div>
-
+                    <div class="message-status">
+                      <p class="status <%= b.status %>"><%= b.status %></p>
+                      <p class="price"><%= b.price %>€</p>
+                    </div>
                   <div class="message-actions">
 
                     <%= link_to booking_path(b), method: :delete , remote: true do %>
