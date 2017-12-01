@@ -26,4 +26,17 @@ class User < ApplicationRecord
     return pending_reviews
   end
 
+  def all_bookings
+    bookings = []
+    self.bookings.each do |b|
+      bookings << b
+    end
+    self.events.each do |e|
+      e.bookings.each do |b|
+        bookings << b
+      end
+    end
+    return bookings
+  end
+
 end

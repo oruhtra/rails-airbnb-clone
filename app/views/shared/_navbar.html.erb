@@ -6,24 +6,13 @@
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
-    <% current_user.events.each do |e|
-      @bookings = []
-      current_user.bookings.each do |b|
-        @bookings << b
-      end
-      current_user.events.each do |e|
-        e.bookings.each do |b|
-          @bookings << b
-        end
-      end
-    end %>
-
-    <% if !@bookings.empty? %>
-      <%= link_to "Messages", booking_messages_path(@bookings.first), class: "navbar-wagon-item navbar-wagon-link"%>
+    <% if user_signed_in? %>
+    <% if !current_user.all_bookings.empty? %>
+      <%= link_to "Messages", booking_messages_path(current_user.all_bookings.first), class: "navbar-wagon-item navbar-wagon-link"%>
     <% end %>
 
 
-    <% if user_signed_in? %>
+
 
       <!-- Links when logged in -->
 
