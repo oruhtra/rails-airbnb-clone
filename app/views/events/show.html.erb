@@ -1,28 +1,33 @@
-<div class="container ">
-  <div class="row">
-    <div class="col-xs-6-col-xs-offset-3 ">
-      <h1 class="yourevent"><%= @event.title %></h1>
-        <p><em>On <%= @event.date.strftime('%A, %b %d') %>, at <%= @event.location %></em> </p>
+ <div class="container">
+    <div class="row">
+      <div class="col-xs-6-col-xs-offset-3 ">
+        <h1 class="yourevent text-center"><%= @event.title %></h1>
+          <p class="title text-center";><em>On <%= @event.date.strftime('%A, %b %d') %>, at <%= @event.location %></em> </p>
+      </div>
+    </div>
+    <div class="main_container" style="display: flex;">
+        <div class="col-xs-12 col-md-8">
+        <!-- Part 1 display sweeper already booked or request send  -->
+          <%= render 'show_bookings' %>
+
+        <!-- Part 2 display sweeper available, build forms to create a booking -->
+          <%= render 'show_available_weepers' %>
+        </div>
+
+
+        <div
+          id="map"
+          class="hidden-xs col-md-4"
+          style="
+          height: 100vh;
+          margin-top: 20px;
+          box-shadow: 0px 5px 5px grey;"
+          data-markers="<%= @markers.to_json %>"
+        ></div>
     </div>
   </div>
+
+
+  </div>
+
 </div>
-
-<!-- Part 1 display sweeper already booked or request send  -->
-
-<%= render 'show_bookings' %>
-
-<!-- Part 2 display sweeper available, build forms to create a booking -->
-
-<%= render 'show_available_weepers' %>
-
-
-
-<div
-  id="map"
-  style="width: 50%;
-  height: 600px;
-  margin-top: 30px;"
-  data-markers="<%= @markers.to_json %>"
-></div>
-
-

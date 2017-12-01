@@ -11,11 +11,8 @@
 .small {
     height: 150px;
     width: 200px;
-    margin: 0 10px 0 0;
-
-    &:hover {
-      box-shadow: 0;
-    }
+    border-radius: 3px 3px 0 0;
+    bottom-margin: 10px;
 }
 
 .card:hover {
