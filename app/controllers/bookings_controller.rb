@@ -22,7 +22,11 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     authorize @booking
     @booking.destroy
-    redirect_to user_path(current_user)
+    respond_to do |format|
+      format.html { redirect_to user_path(current_user) }
+      format.js
+    end
+
   end
 
   private
