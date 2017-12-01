@@ -40,9 +40,12 @@
                     <p><%= e.date %></p>
                   </div>
                   <div class="message-body">
-                    <p><strong><em>You:</em></strong></p>
                     <p>
-                      <!-- ADD MESSAGE HERE -->
+                      <% if !b.messages.empty? %>
+                        <%= b.messages.last.content %>
+                        <% else %>
+                        <p><em>No messages sent yet</em></p>
+                      <% end %>
                     </p>
                   </div>
                   <div class="message-status">
