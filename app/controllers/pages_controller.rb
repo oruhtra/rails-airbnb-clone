@@ -3,7 +3,7 @@ class PagesController < ApplicationController
   def home
     !current_user.nil? ? @id = current_user.id : @id = 0
     if params[:query].present?
-      @users = User.where(status: true).where.not(id: @id).near(params[:query], 1000)
+      @users = User.where(status: true).where.not(id: @id).near(params[:query], 100)
     else
       @users = User.where("status = ? AND id != ?", true, @id)
     end

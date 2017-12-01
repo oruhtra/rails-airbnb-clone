@@ -5,7 +5,7 @@ class EventsController < ApplicationController
     @booking = Booking.new
     @bookings = @event.bookings
     @iduser_booked = @bookings.map { |booking| booking.user.id }
-    @users = User.where(status: true).where.not(id: @iduser_booked.push(@event.user_id)).near(@event.location, 50)
+    @users = User.where(status: true).where.not(id: @iduser_booked.push(@event.user_id)).near(@event.location, 100)
     authorize @event
 
     @markers = @users.map do |user|
